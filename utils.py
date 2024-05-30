@@ -300,7 +300,7 @@ def max_number(score, models, eval_data):
         return ','.join(ms)
 
 
-def generate_pair_scores_rep(all_scores, modelFiles):
+def generate_scores_rep(all_scores, modelFiles):
     scores = []
     # get score
     diag_score = {}
