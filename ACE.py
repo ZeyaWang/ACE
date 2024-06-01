@@ -90,7 +90,7 @@ if __name__ == '__main__':
                 spaceFiles = np.array([m for m in modelFiles if m in keep_models])
 
                 # collect all the internal measure values given the metric
-                all_scores = collect_score_files(eval_data, metric, root=root_path)
+                all_scores = collect_score_files(eval_data, metric, root=os.path.join(root_path, 'embedded_metric'))
                 scores, diag_scores = collect_all_scores(all_scores, modelFiles)
                 scores = np.where(np.isinf(scores) & (scores < 0), np.nan, scores)
                 scores_min = np.nanmin(scores)
