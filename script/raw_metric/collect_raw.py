@@ -29,16 +29,16 @@ if __name__ == '__main__':
     #eval_data = args.dataset
 
     modelpath = {
-        'jule': '/home/zwa281/unsupeval/jule',
-        'julenum': '/home/zwa281/unsupeval_num/julenum',
-        'DEPICT': '/home/zwa281/DEPICT',
-        'DEPICTnum': '/home/zwa281/DEPICTnum',
+        'jule': 'JULE_hyper',
+        'julenum': 'JULE_num',
+        'DEPICT': 'DEPICT_hyper',
+        'DEPICTnum': 'DEPICT_num',
     }
     rootpath = {
-        'jule': '/home/zwa281/unsupeval',
-        'julenum': '/home/zwa281/unsupeval_num',
-        'DEPICT': '/home/zwa281/DEPICT',
-        'DEPICTnum': '/home/zwa281/DEPICTnum',
+        'jule': 'JULE_hyper',
+        'julenum': 'JULE_num',
+        'DEPICT': 'DEPICT_hyper',
+        'DEPICTnum': 'DEPICT_num',
     }
 
     datasets_jule = ['USPS', 'UMist', 'COIL-20', 'COIL-100', 'YTF', 'FRGC', 'MNIST-test', 'CMU-PIE']
@@ -57,8 +57,6 @@ if __name__ == '__main__':
 
 
     metric_list = ['ccc','dunn','cind','db','sdbw', 'ccdbw']
-
-    #min_group = ['cind', 'cind2', 'db', 'sdbw']
 
 
     for task in datasets_all.keys():
@@ -104,10 +102,6 @@ if __name__ == '__main__':
                             value = data['r{}'.format(metric)].tolist()
                         else:
                             value = data['r{}'.format('cdbw')].tolist()
-                    #print(value.tolist())
-                    #print(value, isinstance(value, np.ndarray))
-                    #if (not isinstance(value, np.ndarray)) and value == None:
-                    #print(value)
                     if value == None:
                         #print('---')
                         value = [0 for _ in range(len(models))]
@@ -116,9 +110,6 @@ if __name__ == '__main__':
                     rv = dict(zip(models, value))
                     scored[metric] = rv
 
-            # for metric in metric_list:
-            #     with open('{}/raw_metric/merge_other_{}_{}_score.pkl'.format(task, eval_data, metric), 'wb') as file:
-            #         pk.dump(scored[metric], file)
 
             for metric in ['dav', 'ch', 'euclidean', 'cosine']:
                 with open('{}/raw_metric/merge_{}_{}_score.pkl'.format(task, eval_data, metric), 'rb') as file:

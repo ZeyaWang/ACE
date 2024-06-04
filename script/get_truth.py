@@ -84,16 +84,16 @@ if __name__ == '__main__':
 
 
     modelpath = {
-        'jule': '/home/zwa281/unsupeval/jule',
-        'julenum': '/home/zwa281/unsupeval_num/julenum',
-        'DEPICT': '/home/zwa281/DEPICT',
-        'DEPICTnum': '/home/zwa281/DEPICTnum',
+        'jule': 'JULE_hyper',
+        'julenum': 'JULE_num',
+        'DEPICT': 'DEPICT_hyper',
+        'DEPICTnum': 'DEPICT_num',
     }
     rootpath = {
-        'jule': '/home/zwa281/unsupeval',
-        'julenum': '/home/zwa281/unsupeval_num',
-        'DEPICT': '/home/zwa281/DEPICT',
-        'DEPICTnum': '/home/zwa281/DEPICTnum',
+        'jule': 'JULE_hyper',
+        'julenum': 'JULE_num',
+        'DEPICT': 'DEPICT_hyper',
+        'DEPICTnum': 'DEPICT_num',
     }
 
     parser = argparse.ArgumentParser()
@@ -111,16 +111,14 @@ if __name__ == '__main__':
         modelFiles = get_files_with_substring_and_suffix(modelpath[task], 'output'+eval_data, 'npz')
 
     labels = {}
+    tfname = 'datasets/{}/data4torch.h5'.format(eval_data)
+    truth= np.squeeze(np.array(h5py.File(tfname, 'r')['labels']))
 
     if 'jule' in task:
-        tfname = '/home/zwa281/unsupeval/jule/datasets/{}/data4torch.h5'.format(eval_data)
-        truth= np.squeeze(np.array(h5py.File(tfname, 'r')['labels']))
         for m in modelFiles:
             lfname = os.path.join(modelpath[task], 'label{}.h5'.format(m))
             labels[m] = np.squeeze(np.array(h5py.File(lfname, 'r')['label']))
     else:
-        tfname = '/home/zwa281/DEPICT/datasets/{}/data.h5'.format(eval_data)
-        truth=np.squeeze(np.array(h5py.File(tfname, 'r')['labels']))
         for m in modelFiles:
             files = np.load(os.path.join(modelpath[task],m))
             labels[m] = np.squeeze(np.array(files['y_pred']))

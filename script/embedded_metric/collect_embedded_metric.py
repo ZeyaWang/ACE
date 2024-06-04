@@ -29,16 +29,16 @@ if __name__ == '__main__':
     #eval_data = args.dataset
 
     modelpath = {
-        'jule': '/home/zwa281/unsupeval/jule',
-        'julenum': '/home/zwa281/unsupeval_num/julenum',
-        'DEPICT': '/home/zwa281/DEPICT',
-        'DEPICTnum': '/home/zwa281/DEPICTnum',
+        'jule': 'JULE_hyper',
+        'julenum': 'JULE_num',
+        'DEPICT': 'DEPICT_hyper',
+        'DEPICTnum': 'DEPICT_num',
     }
     rootpath = {
-        'jule': '/home/zwa281/unsupeval',
-        'julenum': '/home/zwa281/unsupeval_num',
-        'DEPICT': '/home/zwa281/DEPICT',
-        'DEPICTnum': '/home/zwa281/DEPICTnum',
+        'jule': 'JULE_hyper',
+        'julenum': 'JULE_num',
+        'DEPICT': 'DEPICT_hyper',
+        'DEPICTnum': 'DEPICT_num',
     }
 
     datasets_jule = ['USPS', 'UMist', 'COIL-20', 'COIL-100', 'YTF', 'FRGC', 'MNIST-test', 'CMU-PIE']
