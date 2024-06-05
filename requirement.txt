@@ -1,0 +1,10 @@
+pandas
+scipy
+networkx
+statsmodels
+scikit-learn
+numpy
+plotly
+hdbscan
+matplotlib
+h5py

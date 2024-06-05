@@ -4,6 +4,9 @@ The code is provided for reproducing the results in the paper "Deep Clustering E
 
 # Usage
 
+## Set up the environment
+Run `pip install -r requirement.txt`
+
 ## ACE Evaluation
 
 To replicate the results reported in the main paper given the calculated measure values
