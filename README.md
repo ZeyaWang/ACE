@@ -1,69 +1,91 @@
-# Adaptive Clustering Evaluation
+### Adaptive Clustering Evaluation
 
-The code is provided for reproducing the results in the paper "Deep Clustering Evaluation: How to Validate Internal Validation Measures".
+This repository contains the code to reproduce the results presented in the paper "Deep Clustering Evaluation: How to Validate Internal Validation Measures".
 
-# Usage
+## Usage
 
-## Set up the environment
-Run `pip install -r requirement.txt`
+### Set Up the Environment
 
-## ACE Evaluation
+Run the following command to install the required dependencies:
 
-To replicate the results reported in the main paper given the calculated measure values
+```bash
+pip install -r requirements.txt
+```
 
-* Download all the calculated internal measure values from the [Google drive](https://drive.google.com/drive/folders/1FHehcJ8Qz7elY9IF3uu2JpMimH3G6l_D?usp=drive_link) to the local folder
+### ACE Evaluation
 
-* Run `python ACE.py`. The arguments can be specified to change the setting of running our ACE.
-  - --cl_method: ('hdbscan','dbscan'); different choice of grouping method
-  - --rank_method', ('pr', 'hits'); different choice of link analysis algorithms
-  - --eps, default=0.05, eps required for dbscan
-  - --filter_alpha', default=0.05, FWER for dip test
-  - --graph_alpha', default=0.05, FWER for creating graph
+To replicate the results reported in the paper using the calculated measure values:
 
+1. Download all the calculated internal measure values from the [Google Drive](https://drive.google.com/drive/folders/1FHehcJ8Qz7elY9IF3uu2JpMimH3G6l_D?usp=drive_link) and save them to a local folder.
+
+2. Run the ACE evaluation script.
+
+To run the default setting, simply execute the following command:
+
+```bash
+python ACE.py 
+```
+For more settings, run
+
+```bash
+python ACE.py --cl_method <method> --rank_method <method> --eps <value> --filter_alpha <value> --graph_alpha <value>
+```
+
+#### Arguments:
+- `--cl_method`: Clustering method ('hdbscan', 'dbscan').
+- `--rank_method`: Link analysis algorithm ('pr', 'hits').
+- `--eps`: (Default: 0.05) Epsilon parameter for DBSCAN.
+- `--filter_alpha`: (Default: 0.05) Family-wise error rate (FWER) for the Dip test.
+- `--graph_alpha`: (Default: 0.05) FWER for creating the graph.
 
 ## Preliminary Steps for Evaluation
 
-### Datasets downloading
+### Downloading Datasets
 
-All the original datasets used for run and evaluate deep clustering algorithms can be downloaded from the Github repository of [JULE](https://github.com/jwyang/JULE.torch).
+Download all the original datasets used to run and evaluate deep clustering algorithms from the [JULE repository](https://github.com/jwyang/JULE.torch).
 
-### Get the external measure values
+### Get the External Measure Values
 
-Given all the downloaded datasets are stored in the folder `scripts/datasets`, please go the folder `scripts` and run `python get_truth.py --dataset $DATASET --task $TASK` to get the NMI and ACC values. For example, for the results obtained from JULE hyperparameter experiment on the dataset COIL-20, run
+Ensure all downloaded datasets are stored in the `scripts/datasets` folder. Navigate to the `scripts` folder and run the following command to get the NMI and ACC values:
 
-`python get_truth.py --dataset COIL-20 --task jule`
+```bash
+python get_truth.py --dataset <DATASET> --task <TASK>
+```
 
-### Generate the internal measure values for all the pairs of partitioning results and embedded data
+Example for the JULE hyperparameter experiment on the COIL-20 dataset:
 
-All the scripts to generate all the internal measure values used for the evaluation are in the folder script/embedded_metric. Consider some internal measure values can only be obtained through R package, we use both R and Python scripts to generate all these measure values. 
+```bash
+python get_truth.py --dataset COIL-20 --task jule
+```
 
-* The script `embedded_data.py` is used to calculate the measure values for the four internal measures reported in the main paper and prepare the intermediate inputs to the R script for more efficient calculation.
+### Generate Internal Measure Values
 
-* The script 'embedded.r' is used to calculate the values for the remaining measures.
+All scripts to generate internal measure values for the evaluation are in the `scripts/embedded_metric` folder. Since some internal measure values can only be obtained through R packages, both R and Python scripts are used.
 
-* The script 'collect_embedded_metric.py' is used to postprocess the calculated values.
+1. **Calculate Measure Values**:
+   - `embedded_data.py`: Calculates measure values for the four internal measures reported in the main paper and prepares intermediate inputs for the R script.
+   - `embedded.r`: Calculates the values for the remaining measures.
+   - `collect_embedded_metric.py`: Post-processes the calculated values.
 
-* The script 'make.py' is a script to generate shell scripts submitted to Slurms, which can provide a reference to users about how to generate their submission scripts.
+2. **Generate Shell Scripts for Slurms**:
+   - `make.py`: Generates shell scripts for submission to Slurms, providing a reference for users on generating their submission scripts.
 
+### Generate Raw Scores
 
-### Generate raw scores.
-All the scripts to generate all the internal measure values used for the evaluation are in the folder script/raw_metric. Consider some internal measure values can only be obtained through R package, we use both R and Python scripts to generate all these measure values. 
+Scripts for generating internal measure values used for the evaluation are in the `scripts/raw_metric` folder. Both R and Python scripts are utilized.
 
-* The script `get_raw.py` is used to calculate the measure values for the four internal measures reported in the main paper and prepare the intermediate inputs to the R script for more efficient calculation.
+1. **Calculate Measure Values**:
+   - `get_raw.py`: Calculates measure values for the four internal measures reported in the main paper and prepares intermediate inputs for the R script.
+   - `getraw.r`: Calculates the values for the remaining measures.
+   - `collect_raw.py`: Post-processes the calculated values.
 
-* The script 'getraw.r' is used to calculate the values for the remaining measures.
+2. **Generate Shell Scripts for Slurms**:
+   - `make.py`: Generates shell scripts for submission to Slurms, providing a reference for users on generating their submission scripts.
 
-* The script 'collect_raw.py' is used to postprocess the calculated values.
+### Dip Test
 
-* The script 'make.py' is a script to generate shell scripts submitted to Slurms, which can provide a reference to users about how to generate their submission scripts.
+Scripts for performing the Dip test on embedding data obtained from JULE and DEPICT are in the `scripts/dip` folder.
 
-### Dip test
-All the scripts to perform Dip test for the embedding data obtained from JULE and DEPICT are stored in the folder `scripts/dip`.
+### Selection of Checkpoint
 
-
-### Selection of checkpoint
-For the experiments for the selection of checkpoint, all the scripts to perform Dip test for the embedding data obtained from JULE and DEPICT are stored in the folder `scripts/DeepCluster`.
-
-
-
-
+Scripts for the selection of checkpoints and performing the Dip test on embedding data obtained from JULE and DEPICT are in the `scripts/DeepCluster` folder.
