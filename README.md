@@ -1,4 +1,4 @@
-### Adaptive Clustering Evaluation
+# Adaptive Clustering Evaluation
 
 This repository contains the code to reproduce the results presented in the paper "Deep Clustering Evaluation: How to Validate Internal Validation Measures".
 
