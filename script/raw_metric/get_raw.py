@@ -142,6 +142,16 @@ if __name__ == '__main__':
 
     print(task, eval_data, data.shape)
 
+    if eval_data in ['COIL-100']:
+        jeu0, TT0, md0, cmd0 = gen_value(data, False)
+        vv0 = 0
+        ss0 = 0
+    else:
+        jeu0, TT0, ss0, vv0, md0, cmd0 = gen_value(data)
+    
+    np.savez(os.path.join(tmppath, 'data_{}.npz'.format(eval_data)), jeu=jeu0, TT=TT0, ss=ss0, vv=vv0, md=md0, cmd=cmd0)
+
+
     for key in modelFiles:
         y = labels[key]
         scored[metric][key] = clustering_score(data, y, metric=metric)
