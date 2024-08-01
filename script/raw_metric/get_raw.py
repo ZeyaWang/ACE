@@ -153,10 +153,12 @@ if __name__ == '__main__':
 
 
     for key in modelFiles:
+        outf = os.path.join(tmppath, 'key_{}.npz'.format(key))
         y = labels[key]
         scored[metric][key] = clustering_score(data, y, metric=metric)
         scored['nmi'][key] = normalized_mutual_info_score(truth, y)
         scored['acc'][key] = clustering_accuracy(truth, y)
+        np.savez(outf, labelset=np.array(y), jeu=jeu0, TT=TT0, ss=ss0, vv=vv0, md=md0, cmd=cmd0)
 
 
     with open(os.path.join(tpath,'merge_{}_{}_score.pkl'.format(eval_data, metric)), 'wb') as file:
