@@ -144,7 +144,7 @@ if __name__ == '__main__':
 
     if eval_data in ['COIL-100']:
         jeu0, TT0, md0, cmd0 = gen_value(data, False)
-        vv0 = 0
+        vv0 = 0 
         ss0 = 0
     else:
         jeu0, TT0, ss0, vv0, md0, cmd0 = gen_value(data)
