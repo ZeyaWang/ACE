@@ -15,19 +15,22 @@ def get_files_with_substring_and_suffix(directory, substring, suffix):
     return files
 
 
-
 subf = open('submit.py','w')
 subf.write('import os\n')
 
-datasets = [ 'UMist', 'COIL-20', 'USPS','COIL-100', 'YTF', 'FRGC', 'MNIST-test', 'CMU-PIE']
+datasets = ['USPS', 'YTF', 'FRGC', 'MNIST-test', 'CMU-PIE']
 for eval_data in datasets:
-    modelFiles = get_files_with_substring_and_suffix('JULE_hyper', 'feature'+eval_data, 'h5')
-    #modelFiles = get_files_with_substring_and_suffix('JULE_num', 'feature'+eval_data, 'h5')
+    modelFiles = get_files_with_substring_and_suffix('DEPICT_hyper', 'output'+eval_data, 'npz')
+    #modelFiles = get_files_with_substring_and_suffix('DEPICT_num', 'output'+eval_data, 'npz')
     print(modelFiles)
-    modelFiles = [m[7:-3] for m in modelFiles]
-    cmd = 'Rscript clusterable_jule.R {}'.format(eval_data)
+    #modelFiles = [m[5:-4] for m in modelFiles]
+    cmd = 'Rscript clusterable_DEPICT.R {}'.format(eval_data)
     for m in modelFiles:
         cmd += ' {}'.format(m)
+    # print(cmd)
+    # os.system(cmd)
+    # while not os.path.isfile('dip_{}.npz'.format(eval_data)):
+    #     time.sleep(0.1)
     job = 'dip{}'.format(eval_data)
     jobName = job + '.sh'
     outf = open(jobName,'w')
