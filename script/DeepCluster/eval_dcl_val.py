@@ -49,8 +49,8 @@ def clustering_accuracy(gtlabels, labels):
 
 
 parser = argparse.ArgumentParser()
-parser.add_argument('--id', default='1')
-parser.add_argument('--metric', default='euclidean')
+parser.add_argument('--id', default='4', help="the index of checkpiont to be saved")
+parser.add_argument('--metric', default='euclidean', help="metrics to be saved; have to be in [cosine, euclidean, dav, ch]")
 args = parser.parse_args()
 
 
