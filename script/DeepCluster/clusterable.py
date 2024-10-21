@@ -8,17 +8,6 @@ import time
 import argparse
 
 
-def get_files_with_substring_and_suffix(directory, substring, suffix):
-    files = []
-    # Use os.listdir to get a list of all files in the directory
-    all_files = os.listdir(directory)
-    
-    # Use a list comprehension to filter files based on the substring and suffix
-    files = [file for file in all_files if substring in file and file.endswith(suffix)]
-    
-    return files
-
-
 subf = open('submit.py','w')
 subf.write('import os\n')
 

@@ -1,0 +1,10 @@
+MNIST-test35
+MNIST-test45
+MNIST-test50
+MNIST-test5
+MNIST-test10
+MNIST-test40
+MNIST-test20
+MNIST-test15
+MNIST-test25
+MNIST-test30

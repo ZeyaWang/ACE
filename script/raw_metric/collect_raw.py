@@ -9,16 +9,6 @@ from numpy import linalg as LA
 import math
 
 
-def get_files_with_substring_and_suffix(directory, substring, suffix):
-    files = []
-    # Use os.listdir to get a list of all files in the directory
-    all_files = os.listdir(directory)
-
-    # Use a list comprehension to filter files based on the substring and suffix
-    files = [file for file in all_files if substring in file and file.endswith(suffix)]
-
-    return files
-
 if __name__ == '__main__':
 
     parser = argparse.ArgumentParser()
@@ -64,12 +54,9 @@ if __name__ == '__main__':
 
         for eval_data in datasets:
             scored = defaultdict(dict)
-            if 'jule' in task:
-                modelFiles = get_files_with_substring_and_suffix(modelpath[task], 'feature'+eval_data, 'h5')
-                modelFiles = [m[7:-3] for m in modelFiles]
-            else:
-                modelFiles = get_files_with_substring_and_suffix(modelpath[task], 'output'+eval_data, 'npz')
-
+        
+            with open(os.path.join('file_list', task, "{}.txt".format(eval_data)), "r") as file:
+                modelFiles = [line.strip() for line in file.readlines()]
 
             if eval_data not in ['COIL-100', 'UMist']:
                 for key in modelFiles:

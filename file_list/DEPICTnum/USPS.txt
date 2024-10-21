@@ -1,0 +1,10 @@
+outputUSPS_50.npz
+outputUSPS_35.npz
+outputUSPS_15.npz
+outputUSPS_5.npz
+outputUSPS_40.npz
+outputUSPS_30.npz
+outputUSPS_25.npz
+outputUSPS_10.npz
+outputUSPS_45.npz
+outputUSPS_20.npz

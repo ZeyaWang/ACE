@@ -51,17 +51,6 @@ def clustering_score(x,y, metric):
         return silhouette_score(x, y, metric=metric)
 
 
-def get_files_with_substring_and_suffix(directory, substring, suffix):
-    files = []
-    # Use os.listdir to get a list of all files in the directory
-    all_files = os.listdir(directory)
-    
-    # Use a list comprehension to filter files based on the substring and suffix
-    files = [file for file in all_files if substring in file and file.endswith(suffix)]
-    
-    return files
-
-
 
 def gen_value(feature, eig=True): 
     nn, pp = feature.shape
@@ -116,11 +105,8 @@ if __name__ == '__main__':
     if not os.path.isdir(tmppath):
         os.mkdir(tmppath)
 
-    if 'jule' in task:
-        modelFiles = get_files_with_substring_and_suffix(modelpath[task], 'feature'+eval_data, 'h5')
-        modelFiles = [m[7:-3] for m in modelFiles]
-    else:
-        modelFiles = get_files_with_substring_and_suffix(modelpath[task], 'output'+eval_data, 'npz')
+    with open(os.path.join('file_list', task, "{}.txt".format(eval_data)), "r") as file:
+        modelFiles = [line.strip() for line in file.readlines()]
 
     labels = {}
     scored = defaultdict(dict)

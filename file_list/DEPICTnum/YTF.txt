@@ -1,0 +1,10 @@
+outputYTF_15.npz
+outputYTF_35.npz
+outputYTF_25.npz
+outputYTF_10.npz
+outputYTF_40.npz
+outputYTF_5.npz
+outputYTF_50.npz
+outputYTF_30.npz
+outputYTF_45.npz
+outputYTF_20.npz

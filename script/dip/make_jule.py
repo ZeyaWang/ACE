@@ -8,21 +8,15 @@ import time
 import argparse
 
 
-def get_files_with_substring_and_suffix(directory, substring, suffix):
-    files = []
-    all_files = os.listdir(directory)
-    files = [file for file in all_files if substring in file and file.endswith(suffix)]
-    return files
-
-
 
 subf = open('submit.py','w')
 subf.write('import os\n')
 
 datasets = [ 'UMist', 'COIL-20', 'USPS','COIL-100', 'YTF', 'FRGC', 'MNIST-test', 'CMU-PIE']
 for eval_data in datasets:
-    modelFiles = get_files_with_substring_and_suffix('JULE_hyper', 'feature'+eval_data, 'h5')
-    #modelFiles = get_files_with_substring_and_suffix('JULE_num', 'feature'+eval_data, 'h5')
+    with open(os.path.join('file_list', 'jule_hyper', "{}.txt".format(eval_data)), "r") as file:
+    #with open(os.path.join('file_list', 'jule_num', "{}.txt".format(eval_data)), "r") as file:
+        modelFiles = [line.strip() for line in file.readlines()]
     print(modelFiles)
     modelFiles = [m[7:-3] for m in modelFiles]
     cmd = 'Rscript clusterable_jule.R {}'.format(eval_data)

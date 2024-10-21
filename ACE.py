@@ -55,12 +55,8 @@ if __name__ == '__main__':
             for eval_data in datasets:
                 l = l + 1
                 # get the list of files from all the evaluation results
-                if 'jule' in task:
-                    modelFiles = get_files_with_substring_and_suffix(root_path, 'feature' + eval_data, 'h5')
-                    modelFiles = [m[7:-3] for m in modelFiles]
-                else:
-                    modelFiles = get_files_with_substring_and_suffix(root_path, 'output' + eval_data, 'npz')
-
+                with open(os.path.join('file_list', task, "{}.txt".format(eval_data)), "r") as file:
+                    modelFiles = [line.strip() for line in file.readlines()]
                 # first load nmi and acc results (used as truth for evaluation)
                 tpath = 'true_{}.pkl'.format(eval_data)
                 tpath = os.path.join(root_path, tpath)

@@ -1,0 +1,10 @@
+outputMNIST-test_5.npz
+outputMNIST-test_45.npz
+outputMNIST-test_20.npz
+outputMNIST-test_10.npz
+outputMNIST-test_30.npz
+outputMNIST-test_50.npz
+outputMNIST-test_15.npz
+outputMNIST-test_35.npz
+outputMNIST-test_25.npz
+outputMNIST-test_40.npz

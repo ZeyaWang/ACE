@@ -8,11 +8,6 @@ import time
 import argparse
 
 
-def get_files_with_substring_and_suffix(directory, substring, suffix):
-    files = []
-    all_files = os.listdir(directory)
-    files = [file for file in all_files if substring in file and file.endswith(suffix)]
-    return files
 
 
 subf = open('submit.py','w')
@@ -20,8 +15,9 @@ subf.write('import os\n')
 
 datasets = ['USPS', 'YTF', 'FRGC', 'MNIST-test', 'CMU-PIE']
 for eval_data in datasets:
-    modelFiles = get_files_with_substring_and_suffix('DEPICT_hyper', 'output'+eval_data, 'npz')
-    #modelFiles = get_files_with_substring_and_suffix('DEPICT_num', 'output'+eval_data, 'npz')
+    with open(os.path.join('file_list', 'DEPICT', "{}.txt".format(eval_data)), "r") as file:
+    # with open(os.path.join('file_list', 'DEPICTnum', "{}.txt".format(eval_data)), "r") as file:
+        modelFiles = [line.strip() for line in file.readlines()]
     print(modelFiles)
     #modelFiles = [m[5:-4] for m in modelFiles]
     cmd = 'Rscript clusterable_DEPICT.R {}'.format(eval_data)

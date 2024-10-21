@@ -2,12 +2,6 @@ import sys
 import os
 import pickle as pk
 
-def get_files_with_substring_and_suffix(directory, substring, suffix):
-    files = []
-    all_files = os.listdir(directory)
-    files = [file for file in all_files if substring in file and file.endswith(suffix)]
-    return files
-
 subff = open('submit.py','w')
 subff.write('import os\n')
 
@@ -76,11 +70,8 @@ elif step == 2:
         #subf = open('submit{}.py'.format(task),'w')
         datasets = datasets_all[task]
         for dataset in datasets:
-            if 'jule' in task:
-                modelFiles = get_files_with_substring_and_suffix(modelpath[task], 'feature'+dataset, 'h5')
-                modelFiles = [m[7:-3] for m in modelFiles]
-            else:
-                modelFiles = get_files_with_substring_and_suffix(modelpath[task], 'output'+dataset, 'npz')
+            with open(os.path.join('file_list', task, "{}.txt".format(dataset)), "r") as file:
+                modelFiles = [line.strip() for line in file.readlines()]
             for m1 in modelFiles:
                 ff = '{}/raw_tmp/rr_{}.npz'.format(task, m1)
                 if not os.path.isfile(ff):

@@ -1,0 +1,9 @@
+outputFRGC_25.npz
+outputFRGC_15.npz
+outputFRGC_35.npz
+outputFRGC_20.npz
+outputFRGC_10.npz
+outputFRGC_50.npz
+outputFRGC_45.npz
+outputFRGC_30.npz
+outputFRGC_40.npz
