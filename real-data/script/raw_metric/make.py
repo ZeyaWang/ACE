@@ -54,7 +54,7 @@ if step == 1:
                 outf.write('eval $(conda shell.bash hook)\n')
                 outf.write('source ~/miniconda/etc/profile.d/conda.sh\n')
                 outf.write('conda activate dcl\n')
-                outf.write('python3 /home/zwa281/evaldcl/get_raw.py --dataset {} --metric {} --task {} \n'.format(dataset, metric, task))
+                outf.write('python3 get_raw.py --dataset {} --metric {} --task {} \n'.format(dataset, metric, task))
                 outf.close()
                 #if dataset in ['COIL-20', 'UMist']:
                 ofile = os.path.join(task,'raw_metric', 'merge_{}_{}_score.pkl'.format(dataset, metric))

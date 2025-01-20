@@ -56,7 +56,7 @@ if step == 1:
                 outf.write('eval $(conda shell.bash hook)\n')
                 outf.write('source ~/miniconda/etc/profile.d/conda.sh\n')
                 outf.write('conda activate dcl\n')
-                outf.write('python3 /home/zwa281/evaldcl/embedded_data.py --dataset {} --metric {} --task {} \n'.format(dataset, metric, task))
+                outf.write('python3 embedded_data.py --dataset {} --metric {} --task {} \n'.format(dataset, metric, task))
                 outf.close()
                 subff.write('os.system("sbatch %s")\n' % jobName)
     subff.close()

@@ -17,33 +17,31 @@ pip install -r requirements.txt
 ### Simulation
 To run the simulation and reproduce the results presented in the paper, navigate to the `./simulation/*` directory and follow these steps:  
 
-### **1. Generate Simulations for Different Settings**  
+#### **1. Generate Simulations for Different Settings**  
 Each simulation can be generated using the following command:  
 ```bash
 python sim.py --option <simulation_setting> --cluster_std <sample_standard_deviation> --seed <random_seed> 
 ```  
-#### **Arguments:**  
+##### **Arguments:**  
 - `--option`: Specifies the simulation setting (`dense` or `sparse`).  
 - `--cluster_std`: Defines the sample standard deviation.  
 - `--seed`: Sets the random seed for reproducibility.  
 
 To automate the generation of all simulations, run the script `make_sim.py`. This will create shell scripts for submitting jobs to a SLURM cluster, ensuring that all simulated datasets are generated efficiently.  
 
-### **2. Compute Internal Scores and Dip Test Results**  
+#### **2. Compute Internal Scores and Dip Test Results**  
 For each simulated dataset, internal scores and dip test results must be computed across all embedding spaces.  
 
-- **Internal Scores:**  
-  - Run `calculate_metrics.py` to generate internal scores.  
-  - Run `make_metrics.py` to create shell scripts for submitting jobs to a SLURM cluster, automating the computation of internal scores for all datasets.  
+- **Internal Scores:**  The script `calculate_metrics.py` computes internal scores for a single simulated dataset using one of the metrics reported in the main text. Run `make_metrics.py` to generate shell scripts for submitting jobs to a SLURM cluster, automating the computation of internal scores across all datasets and metrics.
 
-- **Dip Test Results:**  
-  - Run `clusterable.R` to compute dip test results.  
-  - Run `make_dip.py` to generate shell scripts for submitting jobs to a SLURM cluster, automating dip test computations across all datasets.  
+- **Dip Test Results:**  The script `clusterable.R` generates the dip test results for a single simulated dataset.  Run `make_dip.py` to generate shell scripts for submitting jobs to a SLURM cluster, automating dip test computations across all datasets.  
 
-### **3. Compute Final Weighted Scores and Generate Plots**  
-- Run `ACE.py` to compute and save the final weighted scores produced by ACE.  
-- Run `boxplot.py` to generate the main figure for simulations, as presented in the paper.
-### Evaluation for Real Data
+#### **3. Compute Final Weighted Scores and Generate Plots**  
+- Firstly run `ACE.py` to compute and save the final weighted scores produced by ACE.  
+- Then run `boxplot.py` to generate the main figure for simulations from the saved results, as presented in the paper.
+
+
+### Evaluation for Real Data Analysis
 
 To replicate the results reported in the paper using the calculated measure values:
 
