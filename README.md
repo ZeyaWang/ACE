@@ -45,7 +45,7 @@ For each simulated dataset, internal scores and dip test results must be compute
 
 To replicate the results reported in the paper using the calculated measure values:
 
-1. Download all the calculated internal measure values from the [Google Drive](https://drive.google.com/drive/folders/1-yXVE7O_DI7-6D8xeTFd0I2fD5tLmcoP?usp=sharing and save them to a local folder.
+1. Download all the calculated internal measure values from the [Google Drive](https://drive.google.com/drive/folders/1-yXVE7O_DI7-6D8xeTFd0I2fD5tLmcoP?usp=sharing) and save them to a local folder.
 
 2. Run the ACE evaluation script.
 
