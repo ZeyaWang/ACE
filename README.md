@@ -1,8 +1,9 @@
 # Adaptive Clustering Evaluation
-
-This repository contains the code to reproduce the results presented in the paper "Deep Clustering Evaluation: How to Validate Internal Validation Measures".
+Adaptive Clustering Evaluation (ACE) is an internal evaluation method designed to assess clustering results produced by deep clustering algorithms. It introduces a weighted scoring mechanism that combines internal scores, computed across different embedding spaces derived from the deep clustering process. This repository provides the code necessary to reproduce the results presented in the corresponding paper.["Deep Clustering Evaluation: How to Validate Internal Validation Measures"](https://arxiv.org/abs/2403.14830).
 
 ## Usage
+The code for simulation and real data analysis can be found in the `./simulation/*` and `./real_data/*` directories, respectively.
+
 
 ### Set Up the Environment
 
@@ -12,7 +13,37 @@ Run the following command to install the required dependencies:
 pip install -r requirements.txt
 ```
 
-### ACE Evaluation
+
+### Simulation
+To run the simulation and reproduce the results presented in the paper, navigate to the `./simulation/*` directory and follow these steps:  
+
+### **1. Generate Simulations for Different Settings**  
+Each simulation can be generated using the following command:  
+```bash
+python sim.py --option <simulation_setting> --cluster_std <sample_standard_deviation> --seed <random_seed> 
+```  
+#### **Arguments:**  
+- `--option`: Specifies the simulation setting (`dense` or `sparse`).  
+- `--cluster_std`: Defines the sample standard deviation.  
+- `--seed`: Sets the random seed for reproducibility.  
+
+To automate the generation of all simulations, run the script `make_sim.py`. This will create shell scripts for submitting jobs to a SLURM cluster, ensuring that all simulated datasets are generated efficiently.  
+
+### **2. Compute Internal Scores and Dip Test Results**  
+For each simulated dataset, internal scores and dip test results must be computed across all embedding spaces.  
+
+- **Internal Scores:**  
+  - Run `calculate_metrics.py` to generate internal scores.  
+  - Run `make_metrics.py` to create shell scripts for submitting jobs to a SLURM cluster, automating the computation of internal scores for all datasets.  
+
+- **Dip Test Results:**  
+  - Run `clusterable.R` to compute dip test results.  
+  - Run `make_dip.py` to generate shell scripts for submitting jobs to a SLURM cluster, automating dip test computations across all datasets.  
+
+### **3. Compute Final Weighted Scores and Generate Plots**  
+- Run `ACE.py` to compute and save the final weighted scores produced by ACE.  
+- Run `boxplot.py` to generate the main figure for simulations, as presented in the paper.
+### Evaluation for Real Data
 
 To replicate the results reported in the paper using the calculated measure values:
 
@@ -28,7 +59,7 @@ python ACE.py
 For more settings, run
 
 ```bash
-python ACE.py --cl_method <method> --rank_method <method> --eps <value> --filter_alpha <value> --graph_alpha <value>
+python ACE.py --cl_method <grouping_method> --rank_method <ranking_method> --eps <dbscan_thresh> --filter_alpha <dip_fwer> --graph_alpha <graph_fwer>
 ```
 
 #### Arguments:
