@@ -1,6 +1,9 @@
 # Adaptive Clustering Evaluation
 Adaptive Clustering Evaluation (ACE) is an internal evaluation method designed to assess clustering results produced by deep clustering algorithms. It introduces a weighted scoring mechanism that combines internal scores, computed across different embedding spaces derived from the deep clustering process. This repository provides the code necessary to reproduce the results presented in the corresponding paper.["Deep Clustering Evaluation: How to Validate Internal Validation Measures"](https://arxiv.org/abs/2403.14830).
 
+Clustering outputs $\phi_m = (\mathcal{Z}_{m}, \rho_{m})$, $m\in \{1,\cdots, M\}$
+
+
 ## Usage
 The code for simulation and real data analysis can be found in the `./simulation/*` and `./real_data/*` directories, respectively.
 
@@ -43,7 +46,7 @@ For each simulated dataset, internal scores and dip test results must be compute
 
 ### Evaluation for Real Data Analysis
 
-To replicate the results reported in the paper using the calculated measure values:
+For the deep clustering evaluation conducted for the real data analysis, we provide the internal measure scores that are evaluated for each clustering result across different embedding spaces, which enables the users directly run the ACE evaluation script using these scrores as input:
 
 1. Download all the calculated internal measure values from the [Google Drive](https://drive.google.com/drive/folders/1-yXVE7O_DI7-6D8xeTFd0I2fD5tLmcoP?usp=sharing) and save them to a local folder.
 
