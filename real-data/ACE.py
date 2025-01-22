@@ -31,7 +31,7 @@ if __name__ == '__main__':
     parser.add_argument('--rank_method', type=str, default='pr', help='pr or hits')
     parser.add_argument('--eps', type=float, default=0.05, help='eps require for dbscan')
     parser.add_argument('--filter_alpha', type=float, default=0.05, help='FWER for dip test')
-    parser.add_argument('--graph_alpha', type=float, default=0.05, help='FWER for creating graph')
+    parser.add_argument('--graph_alpha', type=float, default=0.1, help='FWER for creating graph')
 
     args = parser.parse_args()
 
@@ -59,7 +59,7 @@ if __name__ == '__main__':
                     modelFiles = [line.strip() for line in file.readlines()]
                 # first load nmi and acc results (used as truth for evaluation)
                 tpath = 'true_{}.pkl'.format(eval_data)
-                tpath = os.path.join(root_path, tpath)
+                tpath = os.path.join(root_path, 'external_metric', tpath)
                 truth_nmi, truth_acc = pk.load(open(tpath, 'rb'))
                 # sort the results to have the same order
                 _, _, nmv = sort_and_match(truth_nmi, modelFiles)
@@ -74,7 +74,7 @@ if __name__ == '__main__':
                 raw_score = np.nan_to_num(raw_score, nan=raw_score_min)
 
                 # load dip test results
-                dpath = os.path.join(root_path, 'dip_{}.npz'.format(eval_data))
+                dpath = os.path.join(root_path, 'dip_test', 'dip_{}.npz'.format(eval_data))
                 files = np.load(dpath, allow_pickle=True)
                 pvalues = files['pvalues1']
                 models = files['models'][1:]

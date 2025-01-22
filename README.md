@@ -58,11 +58,11 @@ For each simulated dataset, internal scores and dip test results must be compute
 
 For the deep clustering evaluation conducted in the real data analysis, we provide the calculated internal measure scores, evaluated for each clustering result across different embedding spaces $`\pi(\rho_{m'} | \mathcal{Z}_m)`$ for $`m, m' \in \{1, \dots, M\}`$. These scores allow users to directly run the ACE evaluation script using them as input.
 
-1. Download all the calculated internal measure values from the [Google Drive](https://drive.google.com/drive/folders/1-yXVE7O_DI7-6D8xeTFd0I2fD5tLmcoP?usp=sharing) and save them to a local folder.
+1. Download all the calculated internal and external measure values, along with other required inputs (dip test results) from the [Google Drive](https://drive.google.com/drive/folders/1-yXVE7O_DI7-6D8xeTFd0I2fD5tLmcoP?usp=sharing) and save them to a local folder.
 
 2. Run the ACE evaluation script.
 
-To run the default setting, simply execute the following command:
+To run the default setting (the ones applied in the paper), simply execute the following command:
 
 ```bash
 python ACE.py 
@@ -78,13 +78,18 @@ python ACE.py --cl_method <grouping_method> --rank_method <ranking_method> --eps
 - `--rank_method`: Link analysis algorithm ('pr', 'hits').
 - `--eps`: (Default: 0.05) Epsilon parameter for DBSCAN.
 - `--filter_alpha`: (Default: 0.05) Family-wise error rate (FWER) for the Dip test.
-- `--graph_alpha`: (Default: 0.05) FWER for creating the graph.
+- `--graph_alpha`: (Default: 0.1) FWER for creating the graph.
+
+Users can also prepare all the scores and inputs for ACE from scratch. Below, we outline the preliminary steps to generate the intermediate outputs required as inputs to ACE.
 
 ## Preliminary Steps for Evaluation
 
 ### Downloading Datasets
 
 Download all the original datasets used to run and evaluate deep clustering algorithms from the [JULE repository](https://github.com/jwyang/JULE.torch).
+
+### Run Deep Clustering Methods
+
 
 ### Get the External Measure Values
 
