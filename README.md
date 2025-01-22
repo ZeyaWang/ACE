@@ -4,15 +4,15 @@ Adaptive Clustering Evaluation (ACE) is an internal evaluation method designed t
 
 
 
-Suppose the clustering outputs consist of an embedding space (embedding data) and partition outcomes, denoted as $\phi_m = (\mathcal{Z}_m, \rho_m)$ for $m \in \{1, \dots, M\}$. We consider a specific internal measure $\pi$ for evaluation. Let $\pi(\rho_{m'} | \mathcal{Z}_m)$ represent the internal score computed for the partition outcome $\rho_{m'}$ based on the embedding data $\mathcal{Z}_m$.  
+Suppose the clustering outputs consist of an embedding space (embedding data) and partition outcomes, denoted as $'\phi_m = (\mathcal{Z}_m, \rho_m)'$ for $'m \in \{1, \dots, M\}'$. We consider a specific internal measure $'\pi'$ for evaluation. Let $'\pi(\rho_{m'} | \mathcal{Z}_m)'$ represent the internal score computed for the partition outcome $'\rho_{m'}'$ based on the embedding data $'\mathcal{Z}_m'$.  
 
-To compare different partition outcomes $\rho_1, \dots, \rho_M$, the ACE framework assigns a score to each $\rho_{m'}$, where $m' \in \{1, \dots, M\}$, through space screening and ensemble analysis. This results in the aggregated score:  
+To compare different partition outcomes $'\rho_1, \dots, \rho_M'$, the ACE framework assigns a score to each $'\rho_{m'}'$, where $'m' \in \{1, \dots, M\}'$, through space screening and ensemble analysis. This results in the aggregated score:  
 
-$$
+```math
 \pi(\rho_{m'} | G_s) = \sum_{m \in G_s} w^{(s)}_m \pi(\rho_{m'} | \mathcal{Z}_m)
-$$
+```
 
-where $G_s$ represents the selected group of spaces, and $w^{(s)}_m$ denotes the weight assigned to the internal score corresponding to each selected space.  
+where $'G_s'$ represents the selected group of spaces, and $'w^{(s)}_m'$ denotes the weight assigned to the internal score corresponding to each selected space.  
 
 ## Usage
 The code for simulation and real data analysis can be found in the `./simulation/*` and `./real_data/*` directories, respectively.
