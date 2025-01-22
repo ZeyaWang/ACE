@@ -2,8 +2,17 @@
 # Adaptive Clustering Evaluation
 Adaptive Clustering Evaluation (ACE) is an internal evaluation method designed to assess clustering results produced by deep clustering algorithms. It introduces a weighted scoring mechanism that combines internal scores, computed across different embedding spaces derived from the deep clustering process. This repository provides the code necessary to reproduce the results presented in the corresponding paper.["Deep Clustering Evaluation: How to Validate Internal Validation Measures"](https://arxiv.org/abs/2403.14830).
 
-Clustering outputs $\phi_m = (\mathcal{Z}_m, \rho_m)$, $m\in \{1,\cdots, M\}$
 
+
+Suppose the clustering outputs consist of an embedding space (embedding data) and partition outcomes, denoted as \(\phi_m = (\mathcal{Z}_m, \rho_m)\) for \(m \in \{1, \dots, M\}\). We consider a specific internal measure \(\pi\) for evaluation. Let \(\pi(\rho_{m'} | \mathcal{Z}_m)\) represent the internal score computed for the partition outcome \(\rho_{m'}\) based on the embedding data \(\mathcal{Z}_m\).  
+
+To compare different partition outcomes \(\rho_1, \dots, \rho_M\), the ACE framework assigns a score to each \(\rho_{m'}\), where \(m' \in \{1, \dots, M\}\), through space screening and ensemble analysis. This results in the aggregated score:  
+
+\[
+\pi(\rho_{m'} | G_s) = \sum_{m \in G_s} w^{(s)}_m \pi(\rho_{m'} | \mathcal{Z}_m)
+\]
+
+where \(G_s\) represents the selected group of spaces, and \(w^{(s)}_m\) denotes the weight assigned to the internal score corresponding to each selected space.  
 
 ## Usage
 The code for simulation and real data analysis can be found in the `./simulation/*` and `./real_data/*` directories, respectively.
