@@ -92,6 +92,9 @@ if __name__ == '__main__':
     task = args.task
     tpath = 'true_{}.pkl'.format(eval_data)
 
+    os.makedirs(os.path.join(rootpath[task], 'external_metric'), exist_ok=True)
+    tpath = os.path.join('external_metric', tpath)
+
     with open(os.path.join('file_list', task, "{}.txt".format(eval_data)), "r") as file:
         modelFiles = [line.strip() for line in file.readlines()]
 

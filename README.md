@@ -40,7 +40,7 @@ python sim.py --option <simulation_setting> --cluster_std <sample_standard_devia
 - `--cluster_std`: Defines the sample standard deviation.  
 - `--seed`: Sets the random seed for reproducibility.  
 
-To automate the generation of all simulations, run the script `make_sim.py`. This will create shell scripts for submitting jobs to a SLURM cluster, ensuring that all simulated datasets are generated efficiently.  
+To automate the generation of all simulations, run the script `make_sim.py`. This will create shell scripts for submitting jobs to a SLURM cluster, ensuring that all simulated datasets are generated efficiently. Simply adapt the script to match your computing environment and directory paths as needed.
 
 #### **2. Compute Internal Scores and Dip Test Results**  
 For each simulated dataset, internal scores and dip test results must be computed across all embedding spaces.  
@@ -72,7 +72,6 @@ For more settings, run
 ```bash
 python ACE.py --cl_method <grouping_method> --rank_method <ranking_method> --eps <dbscan_thresh> --filter_alpha <dip_fwer> --graph_alpha <graph_fwer>
 ```
-
 #### Arguments:
 - `--cl_method`: Clustering method ('hdbscan', 'dbscan').
 - `--rank_method`: Link analysis algorithm ('pr', 'hits').
@@ -93,11 +92,12 @@ Download all the original datasets used to run and evaluate deep clustering algo
 
 ### Get the External Measure Values
 
-Ensure all downloaded datasets are stored in the `scripts/datasets` folder. Navigate to the `scripts` folder and run the following command to get the NMI and ACC values:
+Ensure all downloaded image datasets are stored in the `real_data/scripts/datasets` folder. Navigate to the `real_data/scripts` folder and run the following command to get the NMI and ACC values:
 
 ```bash
 python get_truth.py --dataset <DATASET> --task <TASK>
 ```
+For the `--dataset` argument, provide the dataset names exactly as they appear in their respective downloaded folders. For the `--task` argument, specify one of the following: `jule`, `julenum`, `DEPICT`, or `DEPICTnum`, which correspond to the two experiments—hyperparameter tuning and number cluster determination—conducted with JULE and DEPICT, respectively.
 
 Example for the JULE hyperparameter experiment on the COIL-20 dataset:
 
@@ -106,33 +106,45 @@ python get_truth.py --dataset COIL-20 --task jule
 ```
 
 ### Generate Internal Measure Values
-
-All scripts to generate internal measure values for the evaluation are in the `scripts/embedded_metric` folder. Since some internal measure values can only be obtained through R packages, both R and Python scripts are used.
+All scripts to generate internal measure values for the evaluation are in the `real_data/scripts/embedded_metric` folder. Since some internal measure values can only be obtained through R packages, both R and Python scripts are used. Similarly, we provide the `make.py` script to automate the execution of our scripts by generating shell scripts for cluster submission. Customize the script to fit your computing environment and directory structure as needed.
 
 1. **Calculate Measure Values**:
-   - `embedded_data.py`: Calculates measure values for the four internal measures reported in the main paper and prepares intermediate inputs for the R script.
-   - `embedded.r`: Calculates the values for the remaining measures.
-   - `collect_embedded_metric.py`: Post-processes the calculated values.
+   - Step 1: `embedded_data.py`: Calculates measure values for the four internal measures reported in the main paper and prepares intermediate inputs for the R script.
+   - Step 2: `embedded.r`: Calculates the values for the remaining measures.
+   - Step 3: `collect_embedded_metric.py`: Collect and post-processes the calculated values. Run this step after completing Step 1 and Step 2 to collect and process abnormal values from the calculated internal measure scores frome the embedding data.
 
 2. **Generate Shell Scripts for Slurms**:
-   - `make.py`: Generates shell scripts for submission to Slurms, providing a reference for users on generating their submission scripts.
+   - `make.py`: Generates shell scripts for submission to SLURM, serving as a reference for users to create their own submission scripts. This script implements the first two steps across metrics, datasets, and tasks. To switch to the second step after completing the first, simply modify Line 28 from `step = 1` to `step = 2`.
 
 ### Generate Raw Scores
 
-Scripts for generating internal measure values used for the evaluation are in the `scripts/raw_metric` folder. Both R and Python scripts are utilized.
+Scripts for generating internal measure values used for the evaluation are in the `real_data/scripts/raw_metric` folder. Both R and Python scripts are utilized.
 
 1. **Calculate Measure Values**:
    - `get_raw.py`: Calculates measure values for the four internal measures reported in the main paper and prepares intermediate inputs for the R script.
    - `getraw.r`: Calculates the values for the remaining measures.
-   - `collect_raw.py`: Post-processes the calculated values.
+   - `collect_raw.py`: Collect and post-processes the calculated values. Run this step after completing Step 1 and Step 2 to collect and process abnormal values from the calculated internal measure scores from the raw data.
 
 2. **Generate Shell Scripts for Slurms**:
-   - `make.py`: Generates shell scripts for submission to Slurms, providing a reference for users on generating their submission scripts.
+   - `make.py`: Generates shell scripts for submission to SLURM, serving as a reference for users to create their own submission scripts. This script implements the first two steps across metrics, datasets, and tasks. To switch to the second step after completing the first, simply modify Line 26 from `step = 1` to `step = 2`.
+
 
 ### Dip Test
+Scripts for conducting the Dip test on embedding data derived from JULE and DEPICT are located in the `real_data/scripts/dip` folder. The scripts `clusterable_DEPICT.R` and `clusterable_jule.R` are specifically designed to perform Dip tests on embedding data obtained from DEPICT and JULE, respectively.  
 
-Scripts for performing the Dip test on embedding data obtained from JULE and DEPICT are in the `scripts/dip` folder.
+To execute the tests, use the following commands:  
+- For DEPICT embeddings:  
+  ```sh
+  Rscript clusterable_DEPICT.R $dataset $embedding_file1 $embedding_file2 $embedding_file3 ...
+  ```  
+- For JULE embeddings:  
+  ```sh
+  Rscript clusterable_jule.R $dataset $embedding_file1 $embedding_file2 $embedding_file3 ...
+  ```  
+
+Additionally, we provide `make_DEPICT.py` and `make_jule.py`, which generate shell scripts for submission to SLURM. These scripts facilitate running the tests across all embedding data generated for various datasets and tasks.
+
 
 ### Selection of Checkpoint
-
-Scripts for the selection of checkpoints and performing the Dip test on embedding data obtained from JULE and DEPICT are in the `scripts/DeepCluster` folder.
+Scripts for selecting checkpoints for experiments in the supplementary materials and performing the Dip test on embedding data from JULE and DEPICT are available in the `real_data/scripts/DeepCluster` folder.  The script `clusterable.R` is used to conduct the Dip test on the embedding data. `clusterable.py` generates shell scripts for submission to SLURM, enabling the tests to be performed across all embedding spaces.   To calculate the internal score of partition outcomes on the embedding data generated by a specific epoch, run:  
+`python eval_dcl_val.py --id <epoch_id> --metric <internal_metric>`. `eval_full.py` and `plot.py` are used to generate tables and figures for the supplementary materials, respectively.

@@ -60,29 +60,26 @@ if __name__ == '__main__':
     np.random.shuffle(X_with_y)
     X_tsne = X_with_y[:, :-1]
     y = X_with_y[:, -1]
-    #y = y+1
     fig = px.scatter(x=X_tsne[:, 0], y=X_tsne[:, 1], color=y)# symbol=m, size=s)
     fig.add_annotation(
         text="p-value: {}".format(pval),
         xref="paper", yref="paper",
-        x=0, y=1,  # Set x and y to place the annotation in the left corner
-        showarrow=False,  # Do not show arrow
+        x=0, y=1,  
+        showarrow=False,  
         font=dict(
-            family="Arial",  # Set the font family
-            size=25,         # Set the font size # previously 22
-            color="blue"      # Set the font color
+            family="Arial",  
+            size=25,         
+            color="blue"     
         )
     )
     fig.update_layout(
-        #title="t-SNE visualization of Custom Classification dataset",
         coloraxis_colorbar_title="Class labels",
         coloraxis_colorbar=dict(tickvals=[200,400,600,800,1000]),
         xaxis_title="t-SNE 1",
         yaxis_title="t-SNE 2",
-        margin=dict(l=0, r=0, t=0, b=0)  # Set the left, right, top, and bottom margins to 0
+        margin=dict(l=0, r=0, t=0, b=0)  
     )
  
-    #fig.write_image(os.path.join(folder, 'true.png'))
     fig.write_image(folder+'_true.png')
 
 

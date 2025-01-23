@@ -76,5 +76,6 @@ if __name__ == '__main__':
                         scored[metric][m][key] = value 
 
             for metric in metric_list:
+                os.makedirs(os.path.join(task, 'embedded_metric'), exist_ok=True)
                 with open('{}/embedded_metric/merge_other_{}_{}_score.pkl'.format(task, eval_data, metric), 'wb') as file:
                     pk.dump(scored[metric], file)

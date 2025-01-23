@@ -55,10 +55,6 @@ args = parser.parse_args()
 
 
 estimates = {}
-#for file1 in os.listdir('npfiles_val'):
-#    if file1.endswith('npz') and file1.startswith('pro'):
-        #modelFiles.append()
-
 for ii in range(4, 100, 5):
     file2 = os.path.join('npfiles_val', 'pro_output_{}.npz'.format(ii))
     print(file2)
