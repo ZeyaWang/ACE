@@ -4,9 +4,8 @@ import pickle as pk
 from collections import defaultdict
 
 
-tasks = ['sim_convex_dense_1.0','sim_convex_sparse_1.0','sim_convex_dense_2.0','sim_convex_sparse_2.0']#
-true_num = {'convex_sparse': 10,
-        'convex_dense': 10}
+tasks = ['sim_dense_1.0','sim_sparse_1.0','sim_dense_2.0','sim_sparse_2.0']#
+
 
 def convert_to_dict(d):
     if isinstance(d, defaultdict):

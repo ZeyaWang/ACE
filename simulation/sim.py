@@ -84,7 +84,7 @@ X_expanded = np.hstack((X, X_noise))
 print(f"X_expanded shape: {X_expanded.shape}, X shape: {X.shape}, X_latent shape: {X_latent.shape},  y shape: {y.shape}")
 
 
-simtype = 'sim_convex_{}_{}'.format(option, args.cluster_std)
+simtype = 'sim_{}_{}'.format(option, args.cluster_std)
 eval_dir_root = '{}'.format(simtype)
 if not os.path.isdir(eval_dir_root):
     os.mkdir(eval_dir_root)

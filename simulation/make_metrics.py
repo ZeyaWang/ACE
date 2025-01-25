@@ -9,7 +9,7 @@ root_path='.'
 
 
 
-simtypes = ['sim_convex_dense_1.0','sim_convex_sparse_1.0','sim_convex_dense_2.0','sim_convex_sparse_2.0']
+simtypes = ['sim_dense_1.0','sim_sparse_1.0','sim_dense_2.0','sim_sparse_2.0']
 
 for metric in ['dav', 'ch', 'euclidean', 'cosine']:
     for simtype in simtypes:

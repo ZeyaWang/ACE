@@ -16,7 +16,7 @@ subf = open('submit.py','w')
 subf.write('import os\n')
 root_path='.'
 
-simtypes = ['sim_convex_dense_1.0','sim_convex_sparse_1.0','sim_convex_dense_2.0','sim_convex_sparse_2.0']
+simtypes = ['sim_dense_1.0','sim_sparse_1.0','sim_dense_2.0','sim_sparse_2.0']
 
 for simtype in simtypes:
     for simseed in range(50):

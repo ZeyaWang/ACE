@@ -78,7 +78,7 @@ if __name__ == '__main__':
 
 
     parser = argparse.ArgumentParser()
-    parser.add_argument('--modelpath', default='convex_dense')
+    parser.add_argument('--modelpath', default='dense')
     parser.add_argument('--metric', default='euclidean')
 
     args = parser.parse_args()
