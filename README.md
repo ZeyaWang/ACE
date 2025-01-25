@@ -88,7 +88,7 @@ Users can also prepare all the scores and inputs for ACE from scratch. Below, we
 Download all the original datasets used to run and evaluate deep clustering algorithms from the [JULE repository](https://github.com/jwyang/JULE.torch).
 
 ### Run Deep Clustering Methods
-
+To run the deep clustering methods *JULE* and *DEPICT* for hyperparameter tuning and cluster number determination, first download their source codes from the original repositories ([JULE repository](https://github.com/jwyang/JULE.torch); [DEPICT repository](https://github.com/herandy/DEPICT)), ensuring access to at least one GPU. Install the required dependencies as specified in the repositories, then copy the codes from `real_data/script/deep_clustering/JULE` and `real_data/script/deep_clustering/DEPICT` into their respective downloaded folders. Finally, execute `run_hyper.py` and `run_num.py` in each folder to sequentially perform hyperparameter tuning and cluster number determination.
 
 ### Get the External Measure Values
 
