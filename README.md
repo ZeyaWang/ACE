@@ -122,6 +122,8 @@ Example for the JULE hyperparameter experiment on the COIL-20 dataset:
 python get_truth.py --dataset COIL-20 --task jule
 ```
 
+After completing the steps, the values of the external measures are saved in a file with the format `true_{$DATASET}.pkl`. Additionally, the outputs are available in our Google Drive under the directory `$TASK/external_metric`.
+
 ### Generate Internal Measure Values
 All scripts to generate internal measure values for the evaluation are in the `real_data/scripts/embedded_metric` folder. Since some internal measure values can only be obtained through R packages, both R and Python scripts are used. Similarly, we provide the `make.py` script to automate the execution of our scripts by generating shell scripts for cluster submission. Customize the script to fit your computing environment and directory structure as needed.
 
@@ -132,6 +134,9 @@ All scripts to generate internal measure values for the evaluation are in the `r
 
 2. **Generate Shell Scripts for Slurms**:
    - `make.py`: Generates shell scripts for submission to SLURM, serving as a reference for users to create their own submission scripts. This script implements the first two steps across metrics, datasets, and tasks. To switch to the second step after completing the first, simply modify Line 28 from `step = 1` to `step = 2`.
+
+After completing the steps, all internal scores calculated based on the embedding space $`\pi(\rho_{m'} | \mathcal{Z}_m)`$ for the Calinski-Harabasz Index, Davies-Bouldin Index, and Silhouette Score (using both Euclidean and cosine distances) are saved in a file with the format `merge_{$DATASET}_{$METRIC}_score.pkl`. Scores for the other metrics are stored in a file with the format `merge_other_{$DATASET}_{$METRIC}_score.pkl`. Additionally, the outputs are available in our Google Drive under the directory `$TASK/embedded_metric`.
+
 
 ### Generate Raw Scores
 
@@ -145,6 +150,7 @@ Scripts for generating internal measure values used for the evaluation are in th
 2. **Generate Shell Scripts for Slurms**:
    - `make.py`: Generates shell scripts for submission to SLURM, serving as a reference for users to create their own submission scripts. This script implements the first two steps across metrics, datasets, and tasks. To switch to the second step after completing the first, simply modify Line 26 from `step = 1` to `step = 2`.
 
+After completing the steps, all internal scores calculated based on the raw space $`\pi(\rho_{m'} | \mathcal{X})`$ for all metrics are saved in a file with the format `merge_all_{$METRIC}_score.pkl`. Additionally, the outputs are available in our Google Drive under the directory `$TASK/raw_metric`.
 
 ### Dip Test
 Scripts for conducting the Dip test on embedding data derived from JULE and DEPICT are located in the `real_data/scripts/dip` folder. The scripts `clusterable_DEPICT.R` and `clusterable_jule.R` are specifically designed to perform Dip tests on embedding data obtained from DEPICT and JULE, respectively.  
@@ -159,7 +165,25 @@ To execute the tests, use the following commands:
   Rscript clusterable_jule.R $dataset $embedding_file1 $embedding_file2 $embedding_file3 ...
   ```  
 
-Additionally, we provide `make_DEPICT.py` and `make_jule.py`, which generate shell scripts for submission to SLURM. These scripts facilitate running the tests across all embedding data generated for various datasets and tasks.
+Additionally, we provide `make_DEPICT.py` and `make_jule.py`, which generate shell scripts for submission to SLURM. These scripts facilitate running the tests across all embedding data generated for various datasets and tasks. After completing the steps, the results of the DIP test are saved in a file with the format `dip_{$DATASET}.npz`. Additionally, the outputs are available in our Google Drive under the directory `$TASK/external_metric`. Additionally, the outputs are available in our Google Drive under the directory `$TASK/dip_test`.
+
+The structure of the files saved from the calculation of internal measure scores, external measure scores, and Dip test results is as follows:  
+
+| Object | Data Type | Description |
+|--------|-----------|-------------|
+| **File: `$TASK/external_metric/true_{$DATASET}.pkl`** | | |
+| `nmv` | dict | Key: Tag names of the evaluated partitioning outcomes; Value: NMI score |
+| `acv` | dict | Key: Tag names of the evaluated partitioning outcomes; Value: ACC score |
+| **File: `$TASK/embedded_metric/merge_{$DATASET}_{$METRIC}_score.pkl`** | | |
+| `scored` | dict | Key: Metric name; Value: A dictionary where the key is the tag name of the evaluated partitioning outcome and the value is the corresponding score for the metric |
+| **File: `$TASK/embedded_metric/merge_other_{$DATASET}_{$METRIC}_score.pkl`** | | |
+| `scored` | dict | Key: Metric name; Value: A dictionary where the key is the tag name of the evaluated partitioning outcome and the value is the corresponding score for the metric |
+| **File: `$TASK/raw_metric/merge_all_{$METRIC}_score.pkl`** | | |
+| `scored` | dict | Key: Metric name; Value: A dictionary where the key is the tag name of the evaluated partitioning outcome and the value is the corresponding score for the metric |
+| **File: `$TASK/dip_test/dip_{$DATASET}.npz`** | | |
+| `pvalues1` | ndarray | P-values from Dip tests |
+| `models` | ndarray | Tag names for tested spaces |
+
 
 
 ### Selection of Checkpoint
