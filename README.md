@@ -88,7 +88,15 @@ Users can also prepare all the scores and inputs for ACE from scratch. Below, we
 
 ### Downloading Datasets
 
-Download all the original datasets used to run and evaluate deep clustering algorithms from the [JULE repository](https://github.com/jwyang/JULE.torch).
+Download all the original datasets used to run and evaluate deep clustering algorithms from the [JULE repository](https://github.com/jwyang/JULE.torch). The contents of these datasets follow the structure below:  
+
+| Object | Data Type | Description |
+|--------|-----------|-------------|
+| **File: `$DATASET/data4torch.h5`** | | |
+| `data` | ndarray | Image data used for clustering |
+| `labels` | ndarray | Ground truth partition labels |
+
+
 
 ### Run Deep Clustering Methods
 To run the deep clustering methods *JULE* and *DEPICT* for hyperparameter tuning and cluster number determination, first download their source codes from the original repositories ([JULE repository](https://github.com/jwyang/JULE.torch); [DEPICT repository](https://github.com/herandy/DEPICT)), ensuring access to at least one GPU. Install the required dependencies as specified in the repositories, then copy the scripts from `real_data/script/deep_clustering/JULE` and `real_data/script/deep_clustering/DEPICT` into their respective downloaded folders. Finally, run `run_hyper.py` and `run_num.py` in each folder to sequentially execute all tasks across datasets and configurations designated for hyperparameter tuning and cluster number determination. Additionally, we provide the saved clustering outputs ($`\rho_{m}, \mathcal{Z}_m`$) in [Google Drive](https://drive.google.com/drive/folders/1-yXVE7O_DI7-6D8xeTFd0I2fD5tLmcoP?usp=sharing). For outputs generated from running *JULE*, the embedding data $`\mathcal{Z}_m`$ is stored in a file with the format `feature{$DATASET}{$CONFIG}.h5`, and the partition outcome $`\rho_{m}`$ is stored in a file with the format `label{$DATASET}{$CONFIG}.h5`. For outputs generated from running *DEPICT*, both the embedding data $`\mathcal{Z}_m`$ and the partition outcome $`\rho_{m}`$ are stored in a file with the format `output{$DATASET}_{$CONFIG}.npz`.
