@@ -42,6 +42,9 @@ python sim.py --option <simulation_setting> --cluster_std <sample_standard_devia
 
 To automate the generation of all simulations, run the script `make_sim.py`. This will create shell scripts for submitting jobs to a SLURM cluster, ensuring that all simulated datasets are generated efficiently. Simply adapt the script to match your computing environment and directory paths as needed.
 
+
+
+
 #### **2. Compute Internal Scores and Dip Test Results**  
 For each simulated dataset, internal scores and dip test results must be computed across all embedding spaces.  
 
@@ -88,7 +91,21 @@ Users can also prepare all the scores and inputs for ACE from scratch. Below, we
 Download all the original datasets used to run and evaluate deep clustering algorithms from the [JULE repository](https://github.com/jwyang/JULE.torch).
 
 ### Run Deep Clustering Methods
-To run the deep clustering methods *JULE* and *DEPICT* for hyperparameter tuning and cluster number determination, first download their source codes from the original repositories ([JULE repository](https://github.com/jwyang/JULE.torch); [DEPICT repository](https://github.com/herandy/DEPICT)), ensuring access to at least one GPU. Install the required dependencies as specified in the repositories, then copy the scripts from `real_data/script/deep_clustering/JULE` and `real_data/script/deep_clustering/DEPICT` into their respective downloaded folders. Finally, run `run_hyper.py` and `run_num.py` in each folder to sequentially execute all tasks across datasets and configurations designated for hyperparameter tuning and cluster number determination.
+To run the deep clustering methods *JULE* and *DEPICT* for hyperparameter tuning and cluster number determination, first download their source codes from the original repositories ([JULE repository](https://github.com/jwyang/JULE.torch); [DEPICT repository](https://github.com/herandy/DEPICT)), ensuring access to at least one GPU. Install the required dependencies as specified in the repositories, then copy the scripts from `real_data/script/deep_clustering/JULE` and `real_data/script/deep_clustering/DEPICT` into their respective downloaded folders. Finally, run `run_hyper.py` and `run_num.py` in each folder to sequentially execute all tasks across datasets and configurations designated for hyperparameter tuning and cluster number determination. Additionally, we provide the saved clustering outputs ($`\pi(\rho_{m}, \mathcal{Z}_m)`$) in [Google Drive](https://drive.google.com/drive/folders/1-yXVE7O_DI7-6D8xeTFd0I2fD5tLmcoP?usp=sharing). For outputs generated from running *JULE*, the embedding data $\mathcal{Z}_m$ is stored in a file with the format `feature{$DATASET}{$CONFIG}.h5`, and the partition outcome $\pi(\rho_{m})$ is stored in a file with the format `label{$DATASET}{$CONFIG}.h5`. For outputs generated from running *DEPICT*, both the embedding data $\mathcal{Z}_m$ and the partition outcome $\pi(\rho_{m})$ are stored in a file with the format `output{$DATASET}_{$CONFIG}.npz`.
+
+The content in these files follows the structure below:
+
+| Object | Data Type | Description |
+|--------|-----------|-------------|
+| **File: `feature{$DATASET}{$CONFIG}.h5`** | | |
+| `feature` | ndarray | Saved embedding data |
+| **File: `label{$DATASET}{$CONFIG}.h5`** | | |
+| `label` | ndarray | Saved partition outcome |
+| **File: `output{$DATASET}_{$CONFIG}.npz`** | | |
+| `y_features` | ndarray | Saved embedding data |
+| `y_pred` | ndarray | Saved partition outcome |
+   
+
 
 ### Get the External Measure Values
 
