@@ -81,7 +81,7 @@ if __name__ == '__main__':
                 models = models[np.isin(models, np.array(modelFiles))]
                 # filter spaces based on p-values
                 keep_models = filter_out(pvalues, models, alpha=args.filter_alpha)
-                if len(keep_models) < 1:
+                if len(keep_models) < 1: # skip dip test if no space retained
                     print(task, eval_data,'continue')
                     keep_models = list(modelFiles)
                 keep_index = np.array([True if m in keep_models else False for m in modelFiles])
@@ -109,10 +109,10 @@ if __name__ == '__main__':
                 _, _, pool_score = sort_and_match(pool_score, modelFiles)
 
                 # get ACE scores
-                is_constant = np.any(np.all(scores == scores[:, [0]], axis=1))
-                if is_constant:
-                    print(nmv, acv)
-                    continue
+                # is_constant = np.any(np.all(scores == scores[:, [0]], axis=1))
+                # if is_constant:
+                #     print(nmv, acv)
+                #     continue
                 if len(spaceFiles) == 1: 
                     ace_score = {}
                     for i, m in enumerate(modelFiles):

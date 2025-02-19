@@ -82,6 +82,9 @@ if __name__ == '__main__':
                 models = models[np.isin(models, np.array(modelFiles))]
                 # filter spaces based on p-values
                 keep_models = filter_out(pvalues, models, alpha=args.filter_alpha)
+                if len(keep_models) < 1: # skip dip test if no space retained
+                    print(task, eval_data,'continue')
+                    keep_models = list(modelFiles)
                 keep_index = np.array([True if m in keep_models else False for m in modelFiles])
                 spaceFiles = np.array([m for m in modelFiles if m in keep_models])
 

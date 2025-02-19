@@ -1,3 +1,20 @@
+# Description:
+# This script is used as a helper file to calculate internal measures for the evaluation. 
+# It is based on existing code from R package NbClust (https://github.com/cran/NbClust/) with minor modifications.
+#
+# Reference:
+# Charrad, M., Ghazzali, N., Boiteau, V., & Niknafs, A. (2014). 
+# NbClust: An R Package for Determining the Relevant Number of Clusters in a Data Set. 
+# *Journal of Statistical Software, 61*(6), 1–36. 
+# Available at: https://www.jstatsoft.org/v61/i06/
+#
+# License & Attribution:
+# The original code remains under its respective license. Please refer to the original repository 
+# for details. Any reuse should credit the original authors.
+#
+# Disclaimer:
+# Provided "as is" without warranty. Use at your own risk.
+
 Indice.Gap <- function (x1, x2, cl1, cl2, reference.distribution = "unif", B = 10, 
                         method = "ward.D2", d = NULL, centrotypes = "centroids") 
 {
