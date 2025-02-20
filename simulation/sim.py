@@ -15,7 +15,7 @@ from sklearn.manifold import TSNE
 parser = argparse.ArgumentParser()
 parser.add_argument('--option', default='dense', help='dense or sparse')
 parser.add_argument('--seed', type=int, default=10, help='seed value')
-parser.add_argument('--cluster_std', type=float, default=10, help='sample standard deviation')
+parser.add_argument('--cluster_std', type=float, default=1, help='sample standard deviation')
 args = parser.parse_args()
 option = args.option
 seed_value = args.seed
