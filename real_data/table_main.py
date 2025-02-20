@@ -144,12 +144,12 @@ crits = ['cor', 'tau']
 compared = []
 compared.append('eval')
 
-dcols = {'nmi': ['transformed_score vs nmi', 'mean_score vs nmi',
-       'mean_score vs nmi (before)', 'embedding_score vs nmi',
-       'raw_score vs nmi'],
-       'acc': ['transformed_score vs acc', 'mean_score vs acc',
-       'mean_score vs acc (before)', 'embedding_score vs acc',
-       'raw_score vs acc']}
+dcols = {'nmi': ['ACE vs nmi', 'pooled score vs nmi',
+       'pooled score vs nmi (w/o dip)', 'paired score vs nmi',
+       'raw score vs nmi'],
+       'acc': ['ACE vs acc', 'pooled score vs acc',
+       'pooled score vs acc (w/o dip)', 'paired score vs acc',
+       'raw score vs acc']}
 
 # exts = ['nmi', 'acc']
 # ext = exts[1] # acc
