@@ -236,9 +236,9 @@ for task in tasks:
         result_df = result_df.sort_index(axis=1, level=0, ascending=False)
 
         if len(compared) == 1:
-            result_df = result_df.reindex(['transformed score', 'mean score', 'embedding score', 'raw score'][::-1])
+            result_df = result_df.reindex(['ACE', 'pooled score', 'paired score', 'raw score'][::-1])
         else:
-            result_df = result_df.reindex(['transformed score', 'transformed score 1', 'embedding score', 'raw score'][::-1])
+            result_df = result_df.reindex(['ACE', 'ACE 1', 'paired score', 'raw score'][::-1])
 
         if 'num' not in task:
             desired_order = ['USPS', 'YTF', 'FRGC', 'MNIST-test', 'CMU-PIE', 'UMist', 'COIL-20', 'COIL-100', 'Average']
@@ -294,9 +294,9 @@ for task in tasks:
 
 outputs = start + ''.join(outputs) + end
 outputs = outputs.replace('raw score', 'Raw score')
-outputs = outputs.replace('embedding score', 'Paired score')
-outputs = outputs.replace('mean score', 'Pooled score')
-outputs = outputs.replace('transformed score', '\\textbf{ACE}')
+outputs = outputs.replace('paired score', 'Paired score')
+outputs = outputs.replace('pooled score', 'Pooled score')
+outputs = outputs.replace('ACE', '\\textbf{ACE}')
 outputs = outputs.replace('N/A', '')
 if not bracket_turn:
     outputs = re.sub(r'\s\(.*?\)', '', outputs)
