@@ -15,7 +15,7 @@ pvalues1 <- c()
 pvalues2 <- c()
 
 for(i in 1:nargs){
-    model = args[i+1]
+    model = args[i+2]
     model = paste0('feature', model,'.h5')
     model = file.path(task, 'deep_clustering_outputs', model)
     feature = h5read(model, 'feature')

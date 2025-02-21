@@ -14,7 +14,7 @@ pvalues1 <- c()
 pvalues2 <- c()
 
 for(i in 1:nargs){
-    model = args[i+1]
+    model = args[i+2]
     model = file.path(task, 'deep_clustering_outputs', model)
     data=np$load(model)
     jeu=data$f[['y_features']]
