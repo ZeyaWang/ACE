@@ -90,11 +90,11 @@ if __name__ == '__main__':
 
     if 'JULE' in task:
         for m in modelFiles:
-            lfname = os.path.join(task, 'label{}.h5'.format(m))
+            lfname = os.path.join(task, 'deep_clustering_outputs', 'label{}.h5'.format(m))
             labels[m] = np.squeeze(np.array(h5py.File(lfname, 'r')['label']))
     else:
         for m in modelFiles:
-            files = np.load(os.path.join(task,m))
+            files = np.load(os.path.join(task,'deep_clustering_outputs',m))
             labels[m] = np.squeeze(np.array(files['y_pred']))
 
     nmv = {}
