@@ -47,6 +47,6 @@ for task in ['DEPICT_hyper', 'DEPICT_num']:
         outf.write(cmd)
         outf.close()
         subf.write('os.system("sbatch %s")\n' % jobName)
-    subf.close()
+subf.close()
 
 

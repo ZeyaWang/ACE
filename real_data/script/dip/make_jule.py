@@ -42,6 +42,6 @@ for task in ['JULE_hyper', 'JULE_num']:
         outf.write(cmd)
         outf.close()
         subf.write('os.system("sbatch %s")\n' % jobName)
-    subf.close()
+subf.close()
 
 
