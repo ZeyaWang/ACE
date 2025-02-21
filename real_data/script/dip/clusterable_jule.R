@@ -43,4 +43,4 @@ if (!dir.exists(dir_path)) {
 
 np$savez(file.path(task, 'dip_test', paste0("dip_", ds, ".npz")),
          pvalues1=pvalues1,
-         models=args)
+         models=args[2:length(args)])
