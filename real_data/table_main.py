@@ -139,7 +139,7 @@ args = parser.parse_args()
 
 bracket_turn = False
 
-tasks = ['jule_hyper','jule_num','DEPICT','DEPICTnum']
+tasks = ['JULE_hyper','JULE_num','DEPICT_hyper','DEPICTnum']
 crits = ['cor', 'tau']
 compared = []
 compared.append('eval')
@@ -161,9 +161,9 @@ metrics = ['ch', 'dav', 'cosine', 'euclidean']
 #tasks = ['jule_hyper','jule_num','DEPICT','DEPICTnum']
 
 if args.exp == 'hyper':
-    tasks = ['jule_hyper','DEPICT']
+    tasks = ['JULE_hyper','DEPICT_hyper']
 else:
-    tasks = ['jule_num','DEPICTnum']
+    tasks = ['JULE_num','DEPICT_num']
 
 iii = 0
 outputs = []
