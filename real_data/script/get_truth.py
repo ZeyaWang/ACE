@@ -88,7 +88,7 @@ if __name__ == '__main__':
     tfname = 'datasets/{}/data4torch.h5'.format(eval_data)
     truth= np.squeeze(np.array(h5py.File(tfname, 'r')['labels']))
 
-    if 'jule' in task:
+    if 'JULE' in task:
         for m in modelFiles:
             lfname = os.path.join(task, 'label{}.h5'.format(m))
             labels[m] = np.squeeze(np.array(h5py.File(lfname, 'r')['label']))

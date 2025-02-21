@@ -83,7 +83,7 @@ if __name__ == '__main__':
     labels={}
     scored = defaultdict(dict)
 
-    if 'jule' in task:
+    if 'JULE' in task:
         for m in modelFiles:
             ffname = os.path.join(task, 'deep_clustering_outputs', 'feature{}.h5'.format(m))
             lfname = os.path.join(task, 'deep_clustering_outputs', 'label{}.h5'.format(m))

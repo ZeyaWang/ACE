@@ -103,7 +103,7 @@ if __name__ == '__main__':
     data = [data[i].flatten() for i in range(data.shape[0])]
     data = np.stack(data, axis=0)
 
-    if 'jule' in task:
+    if 'JULE' in task:
         for m in modelFiles:
             lfname = os.path.join(task, 'label{}.h5'.format(m))
             labels[m] = np.squeeze(np.array(h5py.File(lfname, 'r')['label']))
