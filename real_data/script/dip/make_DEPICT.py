@@ -43,7 +43,7 @@ for task in ['DEPICT_hyper', 'DEPICT_num']:
         outf.write('#SBATCH --error=slurm-%A.%a.err\n')
         outf.write('#SBATCH --mail-type=ALL\n')
         outf.write('\n')
-        outf.write('module load R/4.1.2\n')
+        outf.write('module load R/4.2.1\n')
         outf.write(cmd)
         outf.close()
         subf.write('os.system("sbatch %s")\n' % jobName)
