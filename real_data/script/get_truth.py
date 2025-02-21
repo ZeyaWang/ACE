@@ -80,7 +80,8 @@ if __name__ == '__main__':
 
     os.makedirs(os.path.join(task, 'external_metric'), exist_ok=True)
     tpath = os.path.join('external_metric', tpath)
-
+    if not os.path.isdir(tpath):
+        os.mkdir(tpath)
     with open(os.path.join('file_list', task, "{}.txt".format(eval_data)), "r") as file:
         modelFiles = [line.strip() for line in file.readlines()]
 
