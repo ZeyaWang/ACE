@@ -60,7 +60,7 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('--dataset', default='COIL-20')
     parser.add_argument('--metric', default='euclidean')
-    parser.add_argument('--task', default='jule')
+    parser.add_argument('--task', default='JULE_hyper')
 
     args = parser.parse_args()
     metric = args.metric
