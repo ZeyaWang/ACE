@@ -112,10 +112,10 @@ def row_max_indices(row):
 root_dir = '.'
 
 
-maps = {'jule_hyper': '\\emph{JULE}',
-        'jule_num': '\\emph{JULE}',
-        'DEPICT': '\\emph{DEPICT}',
-        'DEPICTnum': '\\emph{DEPICT}',
+maps = {'JULE_hyper': '\\emph{JULE}',
+        'JULE_num': '\\emph{JULE}',
+        'DEPICT_hyper': '\\emph{DEPICT}',
+        'DEPICT_num': '\\emph{DEPICT}',
         'dav': 'Davies-Bouldin index',
         'ch': 'Calinski-Harabasz index',
         'cosine': 'Silhouette score (cosine distance)',
