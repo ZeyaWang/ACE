@@ -21,7 +21,7 @@ for task in ['JULE_hyper', 'JULE_num']:
         with open(os.path.join('file_list', task, "{}.txt".format(eval_data)), "r") as file:
             modelFiles = [line.strip() for line in file.readlines()]
         print(modelFiles)
-        modelFiles = [m[7:-3] for m in modelFiles]
+        #modelFiles = [m[7:-3] for m in modelFiles]
         cmd = 'Rscript clusterable_jule.R {} {}'.format(task, eval_data)
         for m in modelFiles:
             cmd += ' {}'.format(m)
