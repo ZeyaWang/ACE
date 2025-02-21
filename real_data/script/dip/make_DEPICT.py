@@ -1,9 +1,6 @@
 import h5py
 import numpy as np
 import os, sys
-from sklearn import metrics
-from scipy.optimize import linear_sum_assignment
-from sklearn.metrics.cluster import normalized_mutual_info_score
 import time
 import argparse
 

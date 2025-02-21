@@ -1,9 +1,6 @@
 import h5py
 import numpy as np
 import os, sys
-from sklearn import metrics
-from scipy.optimize import linear_sum_assignment
-from sklearn.metrics.cluster import normalized_mutual_info_score
 import time
 import argparse
 
@@ -43,7 +40,7 @@ for task in datasets_all.keys():
         outf.write('conda activate dcl\n')
         outf.write('python get_truth.py --dataset {} --task {} \n'.format(dataset, task))
         outf.close()
-        subff.write('os.system("sbatch %s")\n' % jobName)
+        subf.write('os.system("sbatch %s")\n' % jobName)
 subf.close()
 
 
