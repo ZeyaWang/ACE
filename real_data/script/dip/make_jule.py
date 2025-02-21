@@ -14,8 +14,8 @@ subf.write('import os\n')
 
 datasets = [ 'UMist', 'COIL-20', 'USPS','COIL-100', 'YTF', 'FRGC', 'MNIST-test', 'CMU-PIE']
 for eval_data in datasets:
-    with open(os.path.join('file_list', 'jule_hyper', "{}.txt".format(eval_data)), "r") as file:
-    #with open(os.path.join('file_list', 'jule_num', "{}.txt".format(eval_data)), "r") as file:
+    with open(os.path.join('file_list', 'JULE_hyper', "{}.txt".format(eval_data)), "r") as file:
+    #with open(os.path.join('file_list', 'JULE_num', "{}.txt".format(eval_data)), "r") as file:
         modelFiles = [line.strip() for line in file.readlines()]
     print(modelFiles)
     modelFiles = [m[7:-3] for m in modelFiles]

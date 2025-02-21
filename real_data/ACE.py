@@ -2,10 +2,10 @@ import pandas as pd
 from utils import *
 import pickle as pk
 
-tasks = { 'jule_hyper': './JULE_hyper',
-          'jule_num': './JULE_num',
-           'DEPICT': './DEPICT_hyper',
-           'DEPICTnum': './DEPICT_num'
+tasks = { 'JULE_hyper': './JULE_hyper',
+          'JULE_num': './JULE_num',
+           'DEPICT_hyper': './DEPICT_hyper',
+           'DEPICT_num': './DEPICT_num'
 }
 
 
@@ -13,10 +13,10 @@ true_num = {
     'USPS':10, 'UMist':20, 'COIL-20':20, 'COIL-100':100, 'YTF':41, 'FRGC':20, 'MNIST-test':10, 'CMU-PIE':68
 }
 
-tasks_datasets = { 'jule_hyper': ['USPS', 'UMist', 'COIL-20', 'COIL-100', 'YTF', 'FRGC', 'MNIST-test', 'CMU-PIE'],
-          'jule_num': ['USPS', 'UMist', 'COIL-20', 'COIL-100', 'YTF', 'FRGC', 'MNIST-test', 'CMU-PIE'],
-          'DEPICT': ['USPS', 'YTF', 'FRGC', 'MNIST-test', 'CMU-PIE'],
-          'DEPICTnum': ['USPS', 'YTF', 'FRGC', 'MNIST-test', 'CMU-PIE']
+tasks_datasets = { 'JULE_hyper': ['USPS', 'UMist', 'COIL-20', 'COIL-100', 'YTF', 'FRGC', 'MNIST-test', 'CMU-PIE'],
+          'JULE_num': ['USPS', 'UMist', 'COIL-20', 'COIL-100', 'YTF', 'FRGC', 'MNIST-test', 'CMU-PIE'],
+          'DEPICT_hyper': ['USPS', 'YTF', 'FRGC', 'MNIST-test', 'CMU-PIE'],
+          'DEPICT_num': ['USPS', 'YTF', 'FRGC', 'MNIST-test', 'CMU-PIE']
 }
 
 

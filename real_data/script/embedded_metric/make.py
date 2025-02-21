@@ -7,21 +7,14 @@ import pickle as pk
 subff = open('submit.py','w')
 subff.write('import os\n')
 
-modelpath = {
-    'jule': 'JULE_hyper',
-    'julenum': 'JULE_num',
-    'DEPICT': 'DEPICT_hyper',
-    'DEPICTnum': 'DEPICT_num',
-}
-
 
 datasets_jule = ['USPS', 'UMist', 'COIL-20', 'COIL-100', 'YTF', 'FRGC', 'MNIST-test', 'CMU-PIE']
 datasets_depict = ['USPS', 'YTF', 'FRGC', 'MNIST-test', 'CMU-PIE']
 datasets_all = {
-    'jule': datasets_jule ,
-    'julenum': datasets_jule ,
-    'DEPICT': datasets_depict,
-    'DEPICTnum': datasets_depict,
+    'JULE_hyper': datasets_jule ,
+    'JULE_num': datasets_jule ,
+    'DEPICT_hyper': datasets_depict,
+    'DEPICT_num': datasets_depict,
 }
 
 # change this line to move from step 1 to step 2

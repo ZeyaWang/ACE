@@ -72,20 +72,6 @@ def gen_value(feature, eig=True):
 if __name__ == '__main__':
 
 
-    modelpath = {
-        'jule': 'JULE_hyper',
-        'julenum': 'JULE_num',
-        'DEPICT': 'DEPICT_hyper',
-        'DEPICTnum': 'DEPICT_num',
-    }
-    rootpath = {
-        'jule': 'JULE_hyper',
-        'julenum': 'JULE_num',
-        'DEPICT': 'DEPICT_hyper',
-        'DEPICTnum': 'DEPICT_num',
-    }
-
-
     parser = argparse.ArgumentParser()
     parser.add_argument('--dataset', default='COIL-20')
     parser.add_argument('--metric', default='euclidean')
@@ -119,11 +105,11 @@ if __name__ == '__main__':
 
     if 'jule' in task:
         for m in modelFiles:
-            lfname = os.path.join(modelpath[task], 'label{}.h5'.format(m))
+            lfname = os.path.join(task, 'label{}.h5'.format(m))
             labels[m] = np.squeeze(np.array(h5py.File(lfname, 'r')['label']))
     else:
         for m in modelFiles:
-            files = np.load(os.path.join(modelpath[task],m))
+            files = np.load(os.path.join(task,m))
             labels[m] = np.squeeze(np.array(files['y_pred']))
 
     print(task, eval_data, data.shape)

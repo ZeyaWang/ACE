@@ -15,8 +15,8 @@ subf.write('import os\n')
 
 datasets = ['USPS', 'YTF', 'FRGC', 'MNIST-test', 'CMU-PIE']
 for eval_data in datasets:
-    with open(os.path.join('file_list', 'DEPICT', "{}.txt".format(eval_data)), "r") as file:
-    # with open(os.path.join('file_list', 'DEPICTnum', "{}.txt".format(eval_data)), "r") as file:
+    with open(os.path.join('file_list', 'DEPICT_hyper', "{}.txt".format(eval_data)), "r") as file:
+    # with open(os.path.join('file_list', 'DEPICT_num', "{}.txt".format(eval_data)), "r") as file:
         modelFiles = [line.strip() for line in file.readlines()]
     print(modelFiles)
     #modelFiles = [m[5:-4] for m in modelFiles]

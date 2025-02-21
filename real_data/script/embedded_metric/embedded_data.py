@@ -56,19 +56,6 @@ def gen_value(feature, eig=True):
 if __name__ == '__main__':
 
 
-    modelpath = {
-        'jule': 'JULE_hyper',
-        'julenum': 'JULE_num',
-        'DEPICT': 'DEPICT_hyper',
-        'DEPICTnum': 'DEPICT_num',
-    }
-    rootpath = {
-        'jule': 'JULE_hyper',
-        'julenum': 'JULE_num',
-        'DEPICT': 'DEPICT_hyper',
-        'DEPICTnum': 'DEPICT_num',
-    }
-
 
     parser = argparse.ArgumentParser()
     parser.add_argument('--dataset', default='COIL-20')
@@ -82,7 +69,7 @@ if __name__ == '__main__':
 
     if not os.path.isdir(task):
         os.mkdir(task)
-    tpath = os.path.join(task, 'embedded_data')
+    tpath = os.path.join(task, 'embedded_metric')
     if not os.path.isdir(tpath):
         os.mkdir(tpath)
     tmppath = os.path.join(task, 'tmp')
@@ -98,13 +85,13 @@ if __name__ == '__main__':
 
     if 'jule' in task:
         for m in modelFiles:
-            ffname = os.path.join(modelpath[task], 'feature{}.h5'.format(m))
-            lfname = os.path.join(modelpath[task], 'label{}.h5'.format(m))
+            ffname = os.path.join(task, 'deep_clustering_outputs', 'feature{}.h5'.format(m))
+            lfname = os.path.join(task, 'deep_clustering_outputs', 'label{}.h5'.format(m))
             features[m] = np.array(h5py.File(ffname, 'r')['feature'])
             labels[m] = np.squeeze(np.array(h5py.File(lfname, 'r')['label']))
     else:
         for m in modelFiles:
-            files = np.load(os.path.join(modelpath[task],m))
+            files = np.load(os.path.join(task,'deep_clustering_outputs', m))
             features[m] = np.array(files['y_features'])
             labels[m] = np.squeeze(np.array(files['y_pred']))
     

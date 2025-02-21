@@ -70,29 +70,15 @@ def gen_value(feature, eig=True):
 
 if __name__ == '__main__':
 
-
-    modelpath = {
-        'jule': 'JULE_hyper',
-        'julenum': 'JULE_num',
-        'DEPICT': 'DEPICT_hyper',
-        'DEPICTnum': 'DEPICT_num',
-    }
-    rootpath = {
-        'jule': 'JULE_hyper',
-        'julenum': 'JULE_num',
-        'DEPICT': 'DEPICT_hyper',
-        'DEPICTnum': 'DEPICT_num',
-    }
-
     parser = argparse.ArgumentParser()
     parser.add_argument('--dataset', default='COIL-20')
-    parser.add_argument('--task', default='jule')
+    parser.add_argument('--task', default='JULE_hyper')
     args = parser.parse_args()
     eval_data = args.dataset
     task = args.task
     tpath = 'true_{}.pkl'.format(eval_data)
 
-    os.makedirs(os.path.join(rootpath[task], 'external_metric'), exist_ok=True)
+    os.makedirs(os.path.join(task, 'external_metric'), exist_ok=True)
     tpath = os.path.join('external_metric', tpath)
 
     with open(os.path.join('file_list', task, "{}.txt".format(eval_data)), "r") as file:
@@ -104,11 +90,11 @@ if __name__ == '__main__':
 
     if 'jule' in task:
         for m in modelFiles:
-            lfname = os.path.join(modelpath[task], 'label{}.h5'.format(m))
+            lfname = os.path.join(task, 'label{}.h5'.format(m))
             labels[m] = np.squeeze(np.array(h5py.File(lfname, 'r')['label']))
     else:
         for m in modelFiles:
-            files = np.load(os.path.join(modelpath[task],m))
+            files = np.load(os.path.join(task,m))
             labels[m] = np.squeeze(np.array(files['y_pred']))
 
     nmv = {}
