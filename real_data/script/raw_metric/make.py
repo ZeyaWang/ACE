@@ -29,11 +29,11 @@ if step == 1:
                 outf = open(jobName,'w')
                 outf.write('#!/bin/bash\n')
                 outf.write('\n')
-                if dataset == 'COIL-10':
+                if dataset == 'COIL-100':
                     outf.write('#SBATCH --partition=stats_long\n') 
                 else:
                     outf.write('#SBATCH --partition=stats_medium\n') 
-                if dataset == 'COIL-10':
+                if dataset == 'COIL-100':
                     outf.write('#SBATCH --nodes=1 --mem=64G --time=24:00:00\n')
                 else:
                     outf.write('#SBATCH --nodes=1 --mem=16G --time=24:00:00\n')
