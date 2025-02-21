@@ -6,14 +6,16 @@ library(reticulate)
 np <- import("numpy")
 args = as.character(commandArgs(trailingOnly = T))
 nargs = length(args)
-ds = args[1]
-nargs = nargs - 1
+task = args[1]
+ds = args[2]
+nargs = nargs - 2
 
 pvalues1 <- c()
 pvalues2 <- c()
 
 for(i in 1:nargs){
     model = args[i+1]
+    model = file.path(task, 'deep_clustering_outputs', model)
     data=np$load(model)
     jeu=data$f[['y_features']]
     print(dim(jeu))
@@ -31,6 +33,13 @@ for(i in 1:nargs){
   names(pvalues1)[length(pvalues1)] <- model
 }
 
-np$savez(paste0("dip_", ds, ".npz"),
+
+dir_path = file.path(task, 'dip_test')
+if (!dir.exists(dir_path)) {
+  dir.create(dir_path, recursive = TRUE)
+}
+
+
+np$savez(file.path(task, 'dip_test', paste0("dip_", ds, ".npz")),
          pvalues1=pvalues1,
          models=args)
