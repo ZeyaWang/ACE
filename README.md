@@ -15,7 +15,7 @@ To compare different partition outcomes $`\rho_1, \dots, \rho_M`$, the ACE frame
 where $`G_s`$ represents the selected group of spaces, and $`w^{(s)}_m`$ denotes the weight assigned to the internal score corresponding to each selected space.  
 
 ## Usage
-The code for simulation and real data analysis can be found in the `./simulation/*` and `./real_data/*` directories, respectively.
+The code for simulation and real data analysis can be found in the `./simulation/*` and `./application/*` directories, respectively.
 
 
 ### Set Up the Environment
@@ -109,7 +109,7 @@ Download all the original datasets used to run and evaluate deep clustering algo
 
 
 ### Run Deep Clustering Methods
-To run the deep clustering methods *JULE* and *DEPICT* for hyperparameter tuning and cluster number determination, first download their source codes from the original repositories ([JULE repository](https://github.com/jwyang/JULE.torch); [DEPICT repository](https://github.com/herandy/DEPICT)), ensuring access to at least one GPU. Install the required dependencies as specified in the repositories, then copy the scripts from `real_data/script/deep_clustering/JULE` and `real_data/script/deep_clustering/DEPICT` into their respective downloaded folders. Finally, run `run_hyper.py` and `run_num.py` in each folder to sequentially execute all tasks across datasets and configurations designated for hyperparameter tuning and cluster number determination. Additionally, we provide the saved clustering outputs ($`\rho_{m}, \mathcal{Z}_m`$) in [Google Drive](https://drive.google.com/drive/folders/1MM_5UlMzpDuaezn7mI8nfamvE8TMNK5f?usp=drive_link). For outputs generated from running *JULE*, the embedding data $`\mathcal{Z}_m`$ is stored in a file with the format `feature{$DATASET}{$CONFIG}.h5`, and the partition outcome $`\rho_{m}`$ is stored in a file with the format `label{$DATASET}{$CONFIG}.h5`. For outputs generated from running *DEPICT*, both the embedding data $`\mathcal{Z}_m`$ and the partition outcome $`\rho_{m}`$ are stored in a file with the format `output{$DATASET}_{$CONFIG}.npz`.
+To run the deep clustering methods *JULE* and *DEPICT* for hyperparameter tuning and cluster number determination, first download their source codes from the original repositories ([JULE repository](https://github.com/jwyang/JULE.torch); [DEPICT repository](https://github.com/herandy/DEPICT)), ensuring access to at least one GPU. Install the required dependencies as specified in the repositories, then copy the scripts from `application/script/deep_clustering/JULE` and `application/script/deep_clustering/DEPICT` into their respective downloaded folders. Finally, run `run_hyper.py` and `run_num.py` in each folder to sequentially execute all tasks across datasets and configurations designated for hyperparameter tuning and cluster number determination. Additionally, we provide the saved clustering outputs ($`\rho_{m}, \mathcal{Z}_m`$) in [Google Drive](https://drive.google.com/drive/folders/1MM_5UlMzpDuaezn7mI8nfamvE8TMNK5f?usp=drive_link). For outputs generated from running *JULE*, the embedding data $`\mathcal{Z}_m`$ is stored in a file with the format `feature{$DATASET}{$CONFIG}.h5`, and the partition outcome $`\rho_{m}`$ is stored in a file with the format `label{$DATASET}{$CONFIG}.h5`. For outputs generated from running *DEPICT*, both the embedding data $`\mathcal{Z}_m`$ and the partition outcome $`\rho_{m}`$ are stored in a file with the format `output{$DATASET}_{$CONFIG}.npz`.
 
 The content in these files follows the structure below:
 
@@ -127,7 +127,7 @@ The content in these files follows the structure below:
 
 ### Get the External Measure Values
 
-Ensure all downloaded image datasets are stored in the `real_data/scripts/datasets` folder. Navigate to the `real_data/scripts` folder and run the following command to get the NMI and ACC values:
+Ensure all downloaded image datasets are stored in the `application/scripts/datasets` folder. Navigate to the `application/scripts` folder and run the following command to get the NMI and ACC values:
 
 ```bash
 python get_truth.py --dataset <DATASET> --task <TASK>
@@ -143,7 +143,7 @@ python get_truth.py --dataset COIL-20 --task jule
 After completing the steps, the values of the external measures are saved in a file with the format `true_{$DATASET}.pkl`. Additionally, the outputs are available in our Google Drive under the directory `$TASK/external_metric`.
 
 ### Generate Internal Measure Values
-All scripts to generate internal measure values for the evaluation are in the `real_data/scripts/embedded_metric` folder. Since some internal measure values can only be obtained through R packages, both R and Python scripts are used. Similarly, we provide the `make.py` script to automate the execution of our scripts by generating shell scripts for cluster submission. Customize the script to fit your computing environment and directory structure as needed.
+All scripts to generate internal measure values for the evaluation are in the `application/scripts/embedded_metric` folder. Since some internal measure values can only be obtained through R packages, both R and Python scripts are used. Similarly, we provide the `make.py` script to automate the execution of our scripts by generating shell scripts for cluster submission. Customize the script to fit your computing environment and directory structure as needed.
 
 1. **Calculate Measure Values**:
    - Step 1: `embedded_data.py`: Calculates measure values for the four internal measures reported in the main paper and prepares intermediate inputs for the R script.
@@ -158,7 +158,7 @@ After completing the steps, all internal scores calculated based on the embeddin
 
 ### Generate Raw Scores
 
-Scripts for generating internal measure values used for the evaluation are in the `real_data/scripts/raw_metric` folder. Both R and Python scripts are utilized.
+Scripts for generating internal measure values used for the evaluation are in the `application/scripts/raw_metric` folder. Both R and Python scripts are utilized.
 
 1. **Calculate Measure Values**:
    - `get_raw.py`: Calculates measure values for the four internal measures reported in the main paper and prepares intermediate inputs for the R script.
@@ -171,7 +171,7 @@ Scripts for generating internal measure values used for the evaluation are in th
 After completing the steps, all internal scores calculated based on the raw space $`\pi(\rho_{m'} | \mathcal{X})`$ for all metrics are saved in a file with the format `merge_all_{$METRIC}_score.pkl`. Additionally, the outputs are available in our Google Drive under the directory `$TASK/raw_metric`.
 
 ### Dip Test
-Scripts for conducting the Dip test on embedding data derived from JULE and DEPICT are located in the `real_data/scripts/dip` folder. The scripts `clusterable_DEPICT.R` and `clusterable_jule.R` are specifically designed to perform Dip tests on embedding data obtained from DEPICT and JULE, respectively.  
+Scripts for conducting the Dip test on embedding data derived from JULE and DEPICT are located in the `application/scripts/dip` folder. The scripts `clusterable_DEPICT.R` and `clusterable_jule.R` are specifically designed to perform Dip tests on embedding data obtained from DEPICT and JULE, respectively.  
 
 To execute the tests, use the following commands:  
 - For DEPICT embeddings:  
@@ -205,4 +205,4 @@ The structure of the files saved from the calculation of internal measure scores
 
 
 ### Selection of Checkpoint
-Scripts for selecting checkpoints for supplementary experiments are available in the `real_data/scripts/deepcluster` folder. To run *deepcluster*, first download the source code from the original repository ([deepcluster repository](https://github.com/facebookresearch/deepcluster)), ensuring access to at least one GPU. Install the required dependencies as specified, then copy all scripts from `real_data/scripts/deepcluster` into the downloaded repository. Use `run.sh` and `main.py` to execute *deepcluster*. The `clusterable.R` script conducts the Dip test, and `clusterable.py` generates SLURM scripts to facilitate testing across all embedding spaces. To compute the internal score of partition outcomes for embeddings from a specific epoch, run:  `python eval_dcl_val.py --id <epoch_id> --metric <internal_metric>`.  Additionally, `eval_full.py` and `plot.py` generate tables and figures for the supplementary materials, respectively.
+Scripts for selecting checkpoints for supplementary experiments are available in the `application/scripts/deepcluster` folder. To run *deepcluster*, first download the source code from the original repository ([deepcluster repository](https://github.com/facebookresearch/deepcluster)), ensuring access to at least one GPU. Install the required dependencies as specified, then copy all scripts from `application/scripts/deepcluster` into the downloaded repository. Use `run.sh` and `main.py` to execute *deepcluster*. The `clusterable.R` script conducts the Dip test, and `clusterable.py` generates SLURM scripts to facilitate testing across all embedding spaces. To compute the internal score of partition outcomes for embeddings from a specific epoch, run:  `python eval_dcl_val.py --id <epoch_id> --metric <internal_metric>`.  Additionally, `eval_full.py` and `plot.py` generate tables and figures for the supplementary materials, respectively.
