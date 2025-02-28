@@ -8,8 +8,8 @@ import pandas as pd
 import pickle as pk
 from matplotlib.patches import Patch
 tasks = ['sim_dense_1.0','sim_dense_2.0','sim_sparse_1.0', 'sim_sparse_2.0']
-tasksv = {'sim_dense_1.0': r'Simulation 2 ($\sigma = 1$)','sim_dense_2.0': 'Simulation 2 ($\sigma = 2$)',
-          'sim_sparse_1.0': r'Simulation 1 ($\sigma = 1$)', 'sim_sparse_2.0': r'Simulation 1 ($\sigma = 2$)'}
+tasksv = {'sim_dense_1.0': r'Example 2 ($\sigma = 1$)','sim_dense_2.0': 'Example 2 ($\sigma = 2$)',
+          'sim_sparse_1.0': r'Example 1 ($\sigma = 1$)', 'sim_sparse_2.0': r'Example 1 ($\sigma = 2$)'}
 
 strategys= ['raw', 'pair', 'pool', 'ace']
 strategys_legend= ['Raw score', 'Paired score', 'Pooled score', 'ACE', 'True K']
