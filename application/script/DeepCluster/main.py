@@ -36,8 +36,8 @@ def parse_args():
     parser.add_argument('--sobel', action='store_true', help='Sobel filtering')
     parser.add_argument('--clustering', type=str, choices=['Kmeans', 'PIC'],
                         default='Kmeans', help='clustering algorithm (default: Kmeans)')
-    parser.add_argument('--nmb_cluster', '--k', type=int, default=10000,
-                        help='number of cluster for k-means (default: 10000)')
+    parser.add_argument('--nmb_cluster', '--k', type=int, default=1000,
+                        help='number of cluster for k-means (default: 1000)')
     parser.add_argument('--lr', default=0.05, type=float,
                         help='learning rate (default: 0.05)')
     parser.add_argument('--wd', default=-5, type=float,
