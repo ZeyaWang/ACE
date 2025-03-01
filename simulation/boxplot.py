@@ -34,7 +34,7 @@ meanprops = {
     "markersize": 5
 }
 for ext in ['nmi', 'acc']:
-    with open('box_{}.pkl'.format(ext), 'rb') as op:
+    with open('eval/box_{}.pkl'.format(ext), 'rb') as op:
         data_load = pk.load(op)
     for task in tasks:
         data_t = data_load[task]
