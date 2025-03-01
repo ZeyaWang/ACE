@@ -56,7 +56,7 @@ if __name__ == '__main__':
         label_score = eval_pool(modelFiles, pair_scores)
 
         lsd, _, label_score = sort_and_match(label_score, modelFiles)
-        st_score, graph, outliers, labels, best_n, prv, labels_initial = eval_ace(modelFiles, pair_scores, modelFiles, 0.05,
+        st_score, graph, outliers, labels, best_n, prv, labels_initial = eval_ace(modelFiles, pair_scores, np.array(modelFiles), 0.05,
                                                                         0.1, 'hdbscan', 'pr')
 
         print('--------------------------------------------------')
