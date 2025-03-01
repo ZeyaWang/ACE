@@ -90,7 +90,7 @@ python ACE.py --cl_method <grouping_method> --rank_method <ranking_method> --eps
 - `--filter_alpha`: (Default: 0.05) Family-wise error rate (FWER) for the Dip test.
 - `--graph_alpha`: (Default: 0.1) FWER for creating the graph.
 
-This evaluation script will generate a folder containing CSV files with all the rank correlation results. Then, `python table_main.py --ext <external_measure> --exp <experiment_name>` can be run to generate the main table in the main paper, where `external_measure` can be `nmi` or `acc`, corresponding to NMI or ACC, respectively, and `experiment_name` can be `hyper` or `num`, corresponding to the hyperparameter tuning and determination of cluster numbers experiments. Finally, the script `plot.py` can be run to generate the boxplots in the supplementary materials.
+This evaluation script will generate a folder containing CSV files with all the rank correlation results. Then, `python table_main.py --ext <external_measure> --exp <experiment_name>` can be run to generate the main table in the main paper, where `external_measure` can be `nmi` or `acc`, corresponding to NMI or ACC, respectively, and `experiment_name` can be `hyper` or `num`, corresponding to the hyperparameter tuning and determination of cluster numbers experiments. Finally, the script `plot.py` can be run to generate the barplots.
 
 Users can also prepare all the scores and inputs for ACE from scratch. Below, we outline the preliminary steps to generate the intermediate outputs required as inputs to ACE.
 
