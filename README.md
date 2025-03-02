@@ -20,17 +20,15 @@ The code for simulation and real data analysis can be found in the `./simulation
 
 ### Set Up the Environment
 
-Run the following command to install the required dependencies in Python:  
+First `conda` install `cython`, and then `pip` install the required dependencies in Python using the provided `requirements.txt`.:  
 
 ```bash
+conda install cython
 pip install -r requirements.txt
 ```
 
-Next, install the required R packages by running the following command in an R session:  
+Next, install the required R packages: "clusterability", "rhdf5", "reticulate", "lsa", "fpc", "R.utils".
 
-```r
-install.packages(c("clusterability", "rhdf5", "reticulate", "lsa", "fpc", "R.utils"))
-```  
 
 This will ensure that all necessary dependencies are installed for both Python and R.
 
