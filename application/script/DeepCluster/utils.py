@@ -224,18 +224,18 @@ def community_layout(g, partition):
     '''
     get the layout for plotting the graph
     '''
-    pos_communities = _position_communities(g, partition, scale=3.)
-    pos_nodes = _position_nodes(g, partition, scale=1.)
+    pos_communities = communities_position(g, partition, scale=3.)
+    pos_nodes = nodes_position(g, partition, scale=1.)
     pos = dict()
     for node in g.nodes():
         pos[node] = pos_communities[node] + pos_nodes[node]
     return pos
 
-def _position_communities(g, partition, **kwargs):
+def communities_position(g, partition, **kwargs):
     '''
     get the layout for plotting the graph
     '''
-    between_community_edges = _find_between_community_edges(g, partition)
+    between_community_edges = find_between_community_edges(g, partition)
     communities = set(partition.values())
     hypergraph = nx.DiGraph()
     hypergraph.add_nodes_from(communities)
@@ -247,7 +247,7 @@ def _position_communities(g, partition, **kwargs):
         pos[node] = pos_communities[community]
     return pos
 
-def _find_between_community_edges(g, partition):
+def find_between_community_edges(g, partition):
     '''
     get the layout for plotting the graph
     '''
@@ -262,7 +262,7 @@ def _find_between_community_edges(g, partition):
                 edges[(ci, cj)] = [(ni, nj)]
     return edges
 
-def _position_nodes(g, partition, **kwargs):
+def nodes_position(g, partition, **kwargs):
     '''
     get the layout for plotting the graph
     '''
@@ -355,6 +355,8 @@ def eval_pool(modelFiles, scores):
     for i, m in enumerate(modelFiles):
         label_score[m] = scores[:,i].mean()
     return label_score
+
+
 def eval_ace(modelFiles, scores, spaceFiles, eps=0.05, alpha=0.01, cl_method='dbscan', rank_method='pr', remove_outlier=True):
     '''
     implementation of ACE to get ACE scores
