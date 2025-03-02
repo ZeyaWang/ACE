@@ -27,7 +27,7 @@ conda install cython
 pip install -r requirement.txt
 ```
 
-Next, install the required R packages: "clusterability", "rhdf5", "reticulate", "lsa", "fpc", "R.utils".
+Next, install the required R packages: `clusterability`, `rhdf5`, `reticulate`, `lsa`, `fpc`, `R.utils`.
 
 
 This will ensure that all necessary dependencies are installed for both Python and R.
